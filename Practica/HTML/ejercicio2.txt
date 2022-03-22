@@ -1,0 +1,106 @@
+2.a)
+<!-- Código controlado el día 12/08/2009 -->
+
+Simbologia de comentario en html.
+Se utiliza para agregar comentarios en el codigo html que no afectan a la organizacion de la pagina.
+El comentario se abre con <!-- y se cierra con -->
+
+
+2.b)
+<div id="bloque1">Contenido del bloque1</div>
+
+La etiqueta <div> representa un Bloque de contenido en la pagina.
+El atributo ID nos sirve para representar univocamente al bloque.
+
+El texto "Contenido del bloque1" que se encuentra entre el tag de apertura y cierre del div es el InnerText del Div, es decir, el texto que se representa en pantalla.
+
+2.c)
+<img src="" alt="lugar imagen" id="im1" name="im1" width="32" height="32"
+longdesc="detalles.htm" />
+
+El tag <img> se utiliza para insertar archivos de imagen en la pagina web.
+Atributos:
+    - src: determina de donde se obtendra el archivo que se desea mostrar. (obligatorio)
+    - alt: texto alternativo.
+    - id: identificador del bloque img.
+    - name: El name atributo especifica un nombre para el elemento. Este atributo nombre se puede utilizar para hacer referencia al elemento en un JavaScript
+    - width/height: atributos de dimension del bloque.
+    - longdesc: descripcion extendida de la imagen que se muestra (hiperlink)
+
+
+2.d)
+<meta name="keywords" lang="es" content="casa, compra, venta, alquiler " />
+<meta http-equiv="expires" content="16-Sep-2019 7:49 PM" />
+
+El Tag <meta> define metadata sobre el documento html. El tag <meta> va siempre dentro del <head>
+
+Atributos:
+    -name: nombre de esa metainformacion.
+    -lang: Información sobre el idioma del contenido del elemento y del valor de sus atributos.
+    -content: datos que se asocian a ese name.
+
+    -http-equiv: Aporta información sobre los encabezado de respuesta HTTP
+
+
+
+
+
+
+
+2.e)
+<a href="http://www.e-style.com.ar/resumen.html" type="text/html" hreflang="es" charset="utf-8"
+rel="help">Resumen HTML </a>
+
+El tag <a> es un link/hiperlink.
+
+Atributos:
+    - href: link al que hace referencia el elemento <a>.
+    - type: especifica el tipo de contenido del link.
+    - hreflang: especifica el lenguaje del documento linkeado.
+    - charset: el conjunto de caracteres del enlace del documento.
+    - rel: especifica relacion entre el documento actual y el link que se referencia.
+    - "Resumen HTML" innertext que se muestra en el documento y se puede clickear como link.
+
+
+
+
+2.f)
+<table width="200" summary="Datos correspondientes al ejercicio vencido">
+<caption align="top"> Título </caption>
+<tr>
+<th scope="col">&nbsp;</th>
+<th scope="col">A</th>
+<th scope="col">B</th>
+<th scope="col">C</th>
+</tr>
+<tr>
+<th scope="row">1º</th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th scope="row">2º</th>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+
+tag utilizado para mostrar información en formato tabla dentro del documento html.
+
+<table> tag principal de una tabla html.
+    Atributos:
+        - summary: resumen del contenido de la tabla.
+
+
+<caption> titulo de la tabla. align representa la ubicacion del titulo.
+
+<tr> table row. bloque que representa un registro de la tabla.
+
+<th> celda de la tabla que es tipo titulo / header.
+    Atributos:
+        -scope: atributo enumerado (row/column/rowgroup/colgroup/auto) define a que celdas se relaciona este header.
+
+<td> Celda con informacion dentro de la tabla.
