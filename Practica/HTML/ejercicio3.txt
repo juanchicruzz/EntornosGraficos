@@ -31,18 +31,49 @@ En la primera es simplemente usando el tag <th> que seria el header, y en la seg
 
 Nuevamente dos tablas iguales visualmente pero que en el codigo se aplican dos tacticas distintas
 
-en la primera el "Titulo" esta colocado con el tag <caption> de la tabla (titulo de la tabla)
+En la primera el "Titulo" esta colocado con el tag <caption> de la tabla (titulo de la tabla)
 Y en la segunda se colapsan 3 celdas y se centra para obtener el mismo efecto.
 
 3f
 
-Dos tablas parecidas solo que en la primera se aplica el atributo rowspan para colapsar dos celdas pero verticalmente y 
+Dos tablas similares solo que en la primera se aplica el atributo rowspan para colapsar dos celdas pero verticalmente y 
 en la segunda se utiliza el atributo colspan para colapsar dos celdas horizontalmente.
 
 3g
 
 Dos tablas iguales que aplica el atributo border="1" 
-pero a la segunda se aplica cellpadding="0" cellspacing="0" lo que hace el espacio entre celdas 0 y las lineas divisorias quedan juntas.
+pero a la segunda se aplica cellpadding="0" y cellspacing="0" lo que hace el espacio entre celdas 0 y las lineas divisorias quedan juntas.
 
 3h
+
+Podemos observar 3 formularios:
+a) En el primero de los mismos tenemos asociada una accion "procesar.php" y el atributo method = post, este formulario tambien 
+se encuentra encuadrado bajo el tag <fieldset>, cuando con 2 tag de input (usuario y contraseña) que poseen los valores por 
+defecto de  "xxx". Cuenta con un boton "Enviar" tipo sumbit para mandar el formulario.
+b) Este segundo formulario a diferencia del primero no cuenta con una accion, su metodo es get y no posee el tag <fieldset>, sino
+que cuenta con 2 label, uno para usuario y otro para contraseña. Ademas tambien posee un boton para enviar el formulario.
+c) El tercer fomulario  posee la accion "mailto:xx@xx.com" y el metodo es tipo post. Cuenta con un fieldset bajo la leyenda 
+de LOGIN, poseen en el mismo un usuario y contraseña, tambien cuenta con un boton que dice ENVIAR pero a diferencia
+de los 2 formularios anteriores este boton resetea los campos del formulario.
+
+
+3i
+
+Podemos observar 2 botones, el primero de ellos es un boton que incluye la imagen "logo.jpg" donde se especifica el ancho y el largo
+de la imagen, ademas cuenta con el innerText en negrita que dice CLICK AQUI
+El segundo boton en cambio no posee ninguna imagen, tambien cuenta con el texto de CLICK AQUI pero sin estar resaltado.
+
+3j
+
+En este ejemplo podemos ver 4 radio buttons, en los primeros 2 al poseer el mismo atributo name nos deja seleccionar solamente
+1 de ellos, pero no ambos al mismo tiempo. En cambio en el segundo par de botones podemos seleccionar ambos al mismo tiempo.
+
+
+3k
+
+Podemos apreciar 2 listas bajo el tag <select>, ambas cuentan con las mismas opciones para
+seleccionar, sin embargo la diferencia entre ellas recae en que la segunda cuenta con el
+atributo multiple = "multiple" el cual nos muestra todas las opciones desplegadas que podemos 
+elegir. Mientras que en la primer lista nosotros debemos dar click para visualizar las opciones
+
 
