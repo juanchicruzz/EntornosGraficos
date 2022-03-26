@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="mailto:francoschiavo7@gmail.com" enctype="text/plain" method="post">
+        <div style="width: 260px;">
+            <div style="border: 2;margin-bottom: 30;">
+                <div class="form-group" style="padding-bottom: 4%;display: flex;">
+                    <label for="mail" style="display: inline-block;width: 80px;">E-Mail:</label>
+                    <input required class="form-control" type="email" name="subject" id="mailInput">
+                </div>
+                <div class="form-group" style="padding-bottom: 4%;display: flex;">
+                    <label for="fecha" style="display: inline-block;width: 80px;">Fecha: </label>
+                    <input class="form-control" type="date" name="date" id="dateID">
+                </div>
+                <div class="form-group" style="padding-bottom: 4%;display: flex;">
+                    <label for="color" style="display: inline-block;width: 80px;">Color: </label>
+                    <input class="form-control" type="color" name="color" id="colorID">
+                </div>
+                <div class="form-group" style="padding-bottom: 4%;display: flex;">
+                    <label for="nota" style="display: inline-block;width: 80px;">Nota:</label>
+                    <input required  min="1" max="10" class="form-control" type="number" name="nota" id="NotaID">
+                </div>
+            </div>
+            <div style=" padding: 10px; float: right;">
+    
+                <button type="submit" value="ENVIAR" style=" height: 35px;">ENVIAR</button>
+    
+                <button type="reset" value="BORRAR" style=" height: 35px;">BORRAR</button>
+    
+            </div>
+        </div>
+    </form>
+</body>
+</html>
