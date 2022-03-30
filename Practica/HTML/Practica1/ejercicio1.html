@@ -18,10 +18,11 @@
         </ol> 
     </div>
     <div>
+        <hr>
         <h3>1.</h3>
         <p>
         <font face="verdana" size=3>
-             HTML es el acrónimo de HyperText Markup Language, o en español, Lenguaje para el Formato de Documentos de Hipertexto. Es un lenguaje que es comprendido universalmente por todas las computadoras para representar la estructura y la interacción de una página web. El mismo permite a aquellos que crean y distribuyen HTML estructurar los documentos en línea, proveer a los usuarios interacciones como clicks en vínculos o manejar archivos de audio/video, así como utilizar tablas, listas, imágenes, hojas de cálculo o incluso crear formularios para obtener información de parte de los usuarios.  
+             HTML es el acrónimo de <b>HyperText Markup Language</b>, o en español, Lenguaje para el Formato de Documentos de Hipertexto. Es un lenguaje que es comprendido universalmente por todas las computadoras para representar la estructura y la interacción de una página web. El mismo permite a aquellos que crean y distribuyen HTML estructurar los documentos en línea, proveer a los usuarios interacciones como clicks en vínculos o manejar archivos de audio/video, así como utilizar tablas, listas, imágenes, hojas de cálculo o incluso crear formularios para obtener información de parte de los usuarios.  
             Desde 1980 hasta la actualidad HTML ha sufrido varias modificaciones y ha pasado por distintas versiones, incluyendo:
              <ul>
                  <li>HTML 2.0</li>
@@ -33,37 +34,67 @@
             </ul>
             </font> 
         </p>
+        <hr>
         <h3>2.</h3>
         <p>
         <font face="verdana" size=3>
-             
+             Los principios generales para la creación de documentos HTML son:
+             <ul>
+                 <li><b><i>Separación entre estructura y presentación.</i></b>
+                    <br>A medida que HTML avanzó los elementos o atributos que se utilizaban para mejorar la presentación de los mismos se vieron reemplazados por las hojas de estilos. Esto facilita la revisión del documento y enfocando el código HTML para servir de estructura que es para lo que fue creado.  
+                </li>
+                <li><b><i>Accesibilidad universal.</i></b>
+                    <br>Los autores deben tener en cuenta en la representación de sus documentos para servir a una amplia gama de usuarios finales, esto incluye a aquellos que presentan dificultades físicas o cognitivas. Para esto se podrían implementar navegadores basados en voz, lector braile, o las herramientas que proporciona HTML como por ejemplo el atributo <i>alt</i> , el atributo <i>acceskey</i>, entre otros.  
+                </li>
+                <li><b><i>Representación incremental.</i></b>
+                    <br>Con las nuevas tablas introducidas en HTML4, los autores pueden ayudar a los agentes de usuario a representar los documentos más rápidamente. Los autores pueden aprender a diseñar tablas para su representación incremental.
+                </li>
+             </ul>
         </font> 
         </p>
-    <h3>3.</h3>
+        <hr>
+        <h3>3.</h3>
+        
+            <p>
+            <font face="verdana" size=3>
+            Se considera <b>desaprobado</b> a un elemento o atributo que quedó anticuado por el simple hecho de que existen nuevas extructuras y que por lo tanto su uso ya no es recomendado, esto debido a las actualizaciones del estándar HTML. Los elementos desaprobados pueden declararse obsoletos en versiones futuras de HTML.
+            <br>   Un elemento o tag <b>obsoleto</b> es aquel para el cual no hay garantia de soporte por parte de un agente de usuario. En la especificación sólo se enumeran por razones históricas en el manual de referencia pero su definición ha sido removida. Ejemplos de estas etiquetas obsoletas por ejemplo son 'big', 'center' o 'font'.
+            </font> 
+            </p>
+            <hr>
+        <h3>4.</h3>
+    <font face="verdana" size=3>
         <p>
-        <font face="verdana" size=3>
-         Se considera desaprobado a un elemento o atributo que quedó anticuado por el simple hecho de que existen nuevas extructuras y que por lo tanto su uso ya no es recomendado, esto debido a las actualizaciones del estándar HTML. Los elementos desaprobados pueden declararse obsoletos en versiones futuras de HTML.
-         Un elemento o tag obsoleto es aquel para el cual no hay garantia de soporte por parte de un agente de usuario. En la especificación sólo se enumeran por razones históricas en el manual de referencia pero su definición ha sido removida. Ejemplos de estas etiquetas obsoletas por ejemplo son 'big', 'center' o 'font'.
-        </font> 
+            La DTD (definición del tipo de documento) es la estructura reglamentaria, es decir, los elementos y atributos que están disponibles para cada tipo de documento. Esta debe ser la primera linea en un documento HTML, incluso antes de la etiqueta < html >. La DTD en si no es una etiqueta HTML, en cambio es una instrucción para inidcar al navegador acerca de la versión del lenguaje en que esta escrita nuestra página web.
+            <br> Contrastando un documento con su DTD se puede comprobar si éste es válido o no. En la especificación de HTML 4.01 existen tres tipos de DSD:
+            <ol>
+                <li>
+                    HTML 4.01 Strict:  Es la forma mas estricta de las DTD. Aqui se da prioridad a la estructura antes que la presentacion, la DTD contiene todos los elementos y atributos pero no incluye elementos de presentacion y aquellos en desuso.
+                </li>
+                <li>
+                    HTML 4.01 Transitional:  Incluye todos los elementos del DTD Strict pero ademas agrega cualidades presentacionales, elementos desaprobados y elementos obsoletos, aunque no incluye los marcos.
+                </li>
+                <li>
+                    HTML 4.01 Frameset:  Esta DTD es igual a la Transitional pero sí incluye los marcos
+                </li>
+            </ol>
+        </font>
         </p>
-    <h3>4.</h3>
-        <p>
-
-        </p>
-    <h3>5.</h3>
-        <p>
-        <font face="verdana" size=3>
-         La especificación HTML permite a los autores especificar metadatos, es decir, información adicional del documento más que sólo su contenido. Para esto utiliza el elemento META, especificando una propiedad y un valor para la misma. Por ejemplo, puede utilizarse el elemento < META name="Author" content="Joshua"> para definir el autor de un documento. 
-         La especificación de metadatos implica dos pasos: <br>
-         <b>a.</b> La declaración de una propiedad y de un valor para la misma. Esto puede hacerse de dos maneras; a través del elemento META desde dentro del documento como se explicó aqui arriba, o bien por fuera del documento vinculando los metadatos a través del elemento LINK.
-         <br>
-         <b>b.</b> Luego se referencia a un perfil en el que se definen la propiedad y sus valores legales, para esto previamente se debe haber definido el atributo profile del elemento HEAD. 
-        </font> 
-        <div align="center" >
-            <img src="META.PNG"> 
-        </div>
-        <br>
-        </p>    
+        <hr>
+        <h3>5.</h3>
+            <p>
+                <font face="verdana" size=3>
+                La especificación HTML permite a los autores especificar metadatos, es decir, información adicional del documento más que sólo su contenido. Para esto utiliza el elemento META, especificando una propiedad y un valor para la misma. Por ejemplo, puede utilizarse el elemento < META name="Author" content="Joshua"> para definir el autor de un documento. 
+                La especificación de metadatos implica dos pasos: <br>
+                <b>a.</b> La declaración de una propiedad y de un valor para la misma. Esto puede hacerse de dos maneras: a través del elemento META desde dentro del documento como se explicó aqui arriba, o bien por fuera del documento vinculando los metadatos a través del elemento LINK.
+                <br>
+                <b>b.</b> Luego se referencia a un perfil en el que se definen la propiedad y sus valores legales, para esto previamente se debe haber definido el atributo profile del elemento HEAD. 
+                </font> 
+                <div align="center" >
+                    <img src="META.PNG"> 
+                </div>
+            <br>
+            </p>    
     </div>
 </body>
 </html>
