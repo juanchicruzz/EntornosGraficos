@@ -1,0 +1,14 @@
+
+Ejercitación 1 - Responder el siguiente cuestionario
+1. ¿Ventajas de HTML5?
+2. ¿Por qué utilizarlo?
+3. Nombre ventajas
+
+
+Con HTML5 se introducen dos importantes etiquetas (<audio> y <video>) que permiten la inserción de lo que su nombre indica sin necesidad de usar ningún plugin de terceros. Incluso pueden los archivos ser subidos a sitios de terceros, como por ejemplo Youtube, para luego incrustarlos directamente en nuestro sitio. Esto hace sea mucho más ligero disminuyendo el tamaño final de cada página. 
+Otra funcionalidad es la geolocalización que nos puede resultar útil para ofrecer una mejor experiencia de usuario, por ejemplo, al definir automáticamente el idioma que mostramos nuestra página según la región del usuario que accede, siempre y cuando el mismo acepte esta funcionalidad. 
+HTML5 es totalmente gratuito y cualquier persona puede empezar a programar sin grandes requerimientos en la pc puesto que, aunque no está recomendado, cualquiera podría empezar a programar en este lenguaje incluso en un bloc de notas o editor de texto simple. 
+Otra ventaja es que se mejoró bastante la estructura en cuanto a las etiquetas utilizadas, el desarrollador obtiene una mejor organización y una detección de errores más simple puesto que las etiquetas son descriptivas e intuitivas.
+HTML5 ofrece multi-compatibilidad con todos los navegadores, esto es una gran ventaja puesto que podemos estar seguros de que cualquier usuario será capaz de visualizar nuestra página web, independientemente de si use Chrome, Opera, Safari, Mozila, etc. 
+HTML5 introduce el concepto de local-storage o almacenamiento local, por el cual el concepto de cookies viene a ser mejorado. Esta nueva característica funciona desde el lado del cliente, evitando así que se transfiera información al servidor y por lo tanto se puede notar una mayor seguridad. Además, la información se mantiene almacenada incluso si el usuario cierra el navegador. Por otra parte, se puede hacer uso del caché lo que mejora notablemente el tiempo general de respuesta de nuestro sitio web.
+Una de las mayores ventajas que introduce HTML5 es que su diseño es adaptativo. Esto significa que todo el contenido que nosotros creemos para que los usuarios vean, interactúen y utilicen será accesible tanto desde un navegador en un ordenador como en un dispositivo móvil, lo que reduce considerablemente el trabajo del desarrollador asi como los problemas de compatibilidad que pudiesen generarse para los diferentes dispositivos.
