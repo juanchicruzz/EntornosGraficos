@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            color: green;
+        }
+
+        a:link {
+            color: gray
+        }
+
+        a:visited {
+            color: blue
+        }
+
+        a:hover {
+            color: fuchsia
+        }
+
+        a:active {
+            color: red
+        }
+
+        p {
+            font-family: arial, helvetica;
+            font-size: 10px;
+            color: black;
+        }
+
+        .contenido {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 style="color: black;font: bold;"> Caso 1 </h4>
+    <p class="contenido" style="font-weight: normal;">
+        Este es un texto ...............</p>
+    <table>
+        <tr>
+            <td>Y esta es una tabla.......</td>
+        </tr>
+        <tr>
+            <td><a href="http://www.google.com.ar">con un
+                    enlace</a></td>
+        </tr>
+    </table>
+    <hr>
+    <hr>
+    <h3 style="color: black;font: bold;"> Caso 2 </h4>
+    <p> Este es un texto................</p>
+    <table>
+        <tr>
+            <td>Y esta es una tabla.......</td>
+        </tr>
+        <tr>
+            <td><a href="http://www.google.com.ar">con
+                    un enlace</a></td>
+        </tr>
+    </table>
+    <hr>
+    <hr>
+    <h3 style="color: black;font: bold;"> Comparación </h4>
+    <p>
+        <font face="verdana" size=3 style="color: black;">
+        Como primera medida podemos apreciar que el primer parrafo de cada caso los textos tienen estilos diferentes,esto debido 
+        a que en el primero caso el estilo esta definido en el css interno, tanto por p{} como por .contenido, al ser este elemento de la clase
+        contenido. Tambien es necesario apreciar que este primer elemento tambien tiene definido en si mismo un estilo es cual tiene mayor prioridad
+        que el css interno. En el segundo caso solo se aplicado lo determinado por el css interno de los elementos p, ya que este parrafo no tiene 
+        definida ninguna clase.
+        <br>
+        <br>
+        Luego ambas tablas son identidas, a las cuales se le aplica el color verde por el css "*", dentro de las tablas encontramos un enlace 
+        en cada una de las mismas. Este elemento a se ve afectado por el css interno en cual se define los colores que posee dependiendo la accion
+        que el usuario realice en los mismos (hover,active,etc)
+        </font>
+    </p>
+</body>
+
+</html>
