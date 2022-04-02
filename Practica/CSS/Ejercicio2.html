@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p#normal {
+            font-family: arial, helvetica;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        *#destacado {
+            border-style: solid;
+            border-color: blue;
+            border-width: 2px;
+        }
+
+        #distinto {
+            background-color: #9EC7EB;
+            color: red;
+        }
+
+        p.quitar {
+            color: red;
+        }
+
+        *.desarrollo {
+            font-size: 8px;
+        }
+
+        .importante {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="color: green;"> Parte 1 </h2>
+    <p id="normal">Este es un párrafo</p>
+    <p>
+        <font face="verdana" size=3>
+            El texto de arriba se ve modificado por "p#normal" el cual afecta a todos los elementos "p" cuyo id sea
+            igual a "normal",aplicando
+            al mismo cambios en el font, size y por ultimo haciendo el texto bold.
+        </font>
+    <p>
+    <p id="destacado">Este es otro párrafo</p>
+    <p>
+        <font face="verdana" size=3>
+            El texto de arriba se ve modificado por "*#destacado" el cual afecta a todos los elementos cuyo id sea igual
+            a "destadcado",aplicando
+            al mismo borde solido color azul.
+            Como ese estilo modifica a todos los elementos con id "destacado", debajo podemos ver una tabla con las
+            mismas caracteristicas que
+            el elemento p anterior.
+        </font>
+    <p>
+    <table id="destacado">
+        <tr>
+            <td>Esta es una tabla</td>
+        </tr>
+    </table>
+    <p>
+        <font face="verdana" size=3>
+            Por ultimo tenemos el siguiente parrafo, el cual se me afectado por "#distinto" el cual modifica los
+            elementos con id "distinto"
+            agregandole un background color rojo.
+        </font>
+    <p>
+    <p id="distinto">Este es el último párrafo</p>
+    <br>
+    <hr>
+    <hr>
+    <h2 style="color: green;"> Parte 2 </h2>
+
+    <p class="desarrollo">
+        En este primer párrafo trataremos lo siguiente:
+        <br />xxxxxxxxxxxxxxxxxxxxxxxxx
+    </p>
+    <p>
+        <font face="verdana" size=3>
+            El texto de arriba se ve modificado por "*.desarrollo" el cual afecta a todos los elementos cuya clase sea
+            igual a "desarrollo",aplicando
+            al mismo cambios en el font size.
+        </font>
+    </p>
+    <p class="quitar">
+        Este párrafo debe ser quitado de la obra…
+        <br />xxxxxxxxxxxxxxxxxxxxxxxxx
+    </p>
+    <p>
+        <font face="verdana" size=3>
+            El texto de arriba se ve modificado por "p.quitar" el cual afecta a todos los elementos "p" cuya clase sea
+            igual a "quitar",aplicando
+            al mismo color rojo en el texto.
+        </font>
+    </p>
+    <p>
+        En este otro párrafo trataremos otro tema:<br />
+        xxxxxxxxxxxxxxxxxxxxxxxxx
+    </p>
+    <p>
+        <font face="verdana" size=3>
+            El texto de arriba no se ve modificado por el css.
+        </font>
+    </p>
+    <p class="importante">
+        Y este es el párrafo más importante de la obra…
+        <br />xxxxxxxxxxxxxxxxxxxxxxxxx
+    </p>
+    <p>
+        <font face="verdana" size=3>
+            El texto de arriba se ve modificado por ".importante" que afecta a los elementos cuya clase sea "importante"
+            modificandole
+            el font size.
+        </font>
+    </p>
+    <h1 class="quitar">Este encabezado también debe ser quitado de la obra</h1>
+    <p>
+        <font face="verdana" size=3>
+            El encabezado superior si bien tiene la class "quitar" no es un elemento "p" y por ello no se ve afectado
+            por el css "p.quitar".
+        </font>
+    </p>
+    <p class="quitar importante">Se pueden aplicar varias clases a la vez</p>
+    <p>
+        <font face="verdana" size=3>
+            El elemento p posee 2 clases "quitar" e "importante", por lo cual se le aplican ambas modificaciones, tanto
+            en el color
+            como en ele tamaño de la fuente.
+        </font>
+    </p>
+</body>
+
+</html>
