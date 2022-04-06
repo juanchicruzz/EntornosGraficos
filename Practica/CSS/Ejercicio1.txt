@@ -1,0 +1,91 @@
+1 -
+En las primeras versiones del HTML, el código fuente de una página web contenía tanto
+la información (el contenido) como la forma de representarse (el diseño o formato).
+Actualmente, estos dos aspectos se pueden separar. La página web (el documento
+html) sólo debe contener información, mientras que el formato se debe definir en las
+llamadas hojas de estilo (en inglés, CSS, Cascading Style Sheets, es decir, Hojas de
+Estilo en Cascada).
+CSS son las siglas de Cascade Style Sheet que traducido significa hojas de estilo en
+cascada.
+Las hojas de estilo es una tecnología que nos permite controlar la apariencia de una
+página web. En un principio, los sitios web se concentraban más en su contenido que
+en su presentación.
+
+2-
+
+CSS funciona a base de reglas, es decir, declaraciones sobre el estilo de uno o más
+elementos. Las hojas de estilo están compuestas por una o más de esas reglas aplicadas a un documento HTML o XML. La regla tiene dos partes: 
+un selector y la declaración. A su vez la declaración está compuesta por una propiedad y el valor que se le asigne.
+Ejemplo:
+h1 {color: red;}
+h1 es el selector
+El selector funciona como enlace entre el documento y el estilo, especificando los
+elementos que se van a ver afectados por esa declaración.
+La declaración es la parte de la regla que establece cuál será el efecto.
+
+3 -
+
+Hay 3  formas de insertar una hoja de estilo.
+a) CSS externo : En el html debemos incluir una referencia al archivo
+de hoja de estilos (.css) dentro del elemento <link>
+b) CSS Interno : Se define dentro de la etiqueta <style> de una pagina
+c) CSS en Linea : Se puede usar un estilo en linea para aplicar un estilo
+unico para un solo elemento, los mismos se definen dentro del atributo
+estilo del elemento relevante.
+
+4 -
+
+Los selectores se utilizan para seleccionar elementos html que queremos 
+diseñar
+- Selector de elementos : se selecciona en funcion al nombre del elemento
+Ejemplo -->  h2 {color: red;}
+- Agrupacion de selectores : distintos elementos con el mismo estilo
+Ejemplo --> h2,p {color:gray;}
+- Selector universal : selecciona todos los elementos del html
+Ejemplo --> *{margin: 0;}
+- Selector de clase : asocian los estilos a la clase especificada
+Ejemplo --> .ejemplo {color: pink; font-size:20px;}
+Tambien podemos incluir selector de elementos 
+Ejemplo --> h2.ejemplo, en este caso solo afectara a los elementos h2 con clase "ejemplo".
+- Selector ID : Se selecciona por ID
+Ejemplo --> #ejemplo{background: yellow}
+- Selectores Descendientes : Se aplican a los elementos hijos de los elementos especificados
+Ejemplo --> h1 em {color: gray} Esto quiere decir que todos los elementos <em> definidos dentro
+de un <h1> seran color gris. Tambien existen los child selector (>), en donde las reglas css
+solo seran aplicadas a los hijos directos de un elemento particular
+Ejemplo --> h1 > strong{color:gray;}
+
+5- 
+Una pseudoclase CSS es una palabra clave que se añade a los selectores y que 
+especifica un estado especial del elemento seleccionado. Todas la pseudo clases son 
+una palabra precedida por dos puntos (:)
+Algunos ejemplos
+:empty --> La pseudo-clase :empty de CSS representa cualquier elemento que no tenga hijos
+:first-child de CSS representa el primer elemento entre un grupo de elementos hermanos.
+:last-child de CSS representa el último elemento entre un grupo de elementos hermanos.
+:first-of-type de CSS representa el primer elemento de su tipo entre un grupo de elementos hermanos
+:last-of-type de CSS representa el último elemento de su tipo entre un grupo de elementos hermanos.
+:nth-child() de CSS coincide con uno o más elementos en función de su posición entre un grupo de hermanos.
+	:nth-child(4n) {
+  		color: lime;
+		}
+Selecciona cada cuarto elemento entre
+   cualquier grupo de hermanos */
+
+La pseudo-clase :link CSS representa un elemento que aún no se ha visitado. Coincide con cada elemento no visitado <a>, <area>, o <link> que tiene un atributo href
+Tambien existen otros como :visited, el cual refiere a un enlace ya visitado
+
+6 -
+La herencia en CSS es el mecanismo mediante el cual determinadas propiedades de 
+un elemento padre se transmiten a sus hijos.La herencia también debe entenderse en este contexto: algunos valores de las propiedades 
+CSS que se han establecido para los elementos padre los heredan los elementos hijo, pero otros no.
+Por ejemplo, si para un elemento se establece el color (color) y el tipo de letra (font-family), 
+cada elemento que se encuentre dentro de él también se mostrará de ese color y con ese tipo de letra, 
+a menos que les se haya aplicado un color y un tipo de letra diferentes directamente.
+
+7-
+En un primer nivel de simplicidad, la cascada en las hojas de estilo significa que el orden de las reglas importa en CSS: 
+cuando dos reglas tienen la misma especificidad, se aplica la que aparece en último lugar en el CSS.
+En el ejemplo siguiente tenemos dos reglas que pueden aplicarse al h1. 
+El h1 acaba siendo de color azul porque estas normas tienen un selector idéntico y, por lo tanto, 
+tienen la misma especificidad. Por esta razón, se aplica la última que aparece
