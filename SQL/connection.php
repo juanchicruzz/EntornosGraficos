@@ -14,7 +14,8 @@
 
 include "mysql_utils.php";
 
-$result = getAll("usuarios");
+$MySQL = new MySQLConnector();
+$result = $MySQL->getAll("usuarios");
 $result->data_seek(0);
 $rows = $result->fetch_array();
 foreach($rows as $key => $value) {
@@ -40,6 +41,12 @@ for($i=0; $i<$num_rows; $i++){
     }
 }
 
+echo "<hr> <hr>";
+$user1 = $MySQL->getOneById("usuarios", 1);
+$row = $user1->fetch_array();
+echo "Usuario ID: ".$row['idUsuario']. 
+     " Email: ".$row['email'].
+     " Legajo: ".$row['legajo'];
 
 ?>
 
