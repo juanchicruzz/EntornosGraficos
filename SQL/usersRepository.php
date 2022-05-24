@@ -5,22 +5,18 @@ class UserRepository{
 
     private const ENTITY = "usuarios";
     private const IDENTIFIER = "idUsuario";
-    private static $DBConnector;
+    // private static $DBConnector;
 
-    function __constructor(){
-        // no esta funcionando
-        self::$DBConnector = MySQLConnector::getInstance();
-    }
-
-    function instance(){
+    private function DBInstance(){
         return MySQLConnector::getInstance();
     }
 
     function getAllUsers(){
         $query = "SELECT * FROM ".self::ENTITY.";";
-        $conn = self::instance()->getConnection();
+        $conn = self::DBInstance()->getConnection();
         $result = mysqli_query($conn, $query);
-        self::instance()->closeConnection($conn);
+        $this->DBInstance()->closeConnection($conn);
+        echo "Current opened connections: ".$this->DBInstance()->CURR_CONNECTIONS. "<hr>";
         return $result;
     }
 
@@ -28,9 +24,10 @@ class UserRepository{
         $query = "SELECT * FROM ".self::ENTITY
             ." WHERE ".self::IDENTIFIER.
             " = ".$id. ";" ;
-        $conn = self::instance()->getConnection();
+        $conn = $this->DBInstance()->getConnection();
         $result = mysqli_query($conn, $query);
-        self::instance()->closeConnection($conn);
+        $this->DBInstance()->closeConnection($conn);
+        echo "Current opened connections: ".$this->DBInstance()->CURR_CONNECTIONS. "<hr>";
         return $result;
     }
 
@@ -38,9 +35,10 @@ class UserRepository{
         $query = "SELECT * FROM ".self::ENTITY
             ." WHERE email = '".$email 
             ."' ;" ;
-        $conn = self::instance()->getConnection();
+        $conn = $this->DBInstance()->getConnection();
         $result = mysqli_query($conn, $query);
-        self::instance()->closeConnection($conn);
+        $this->DBInstance()->closeConnection($conn);
+        echo "Current opened connections: ".$this->DBInstance()->CURR_CONNECTIONS. "<hr>";
         return $result;
     }
 }

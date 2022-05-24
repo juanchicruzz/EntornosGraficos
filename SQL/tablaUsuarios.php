@@ -40,6 +40,16 @@ echo "Usuario ID: ".$row2['idUsuario'].
      " Email: ".$row2['email'].
      " Legajo: ".$row2['legajo'];
 
+
+echo "<hr> no se va a poder <hr> ";
+
+// no se va a poder porq ya hay 3 conexiones abiertas
+$user3 = $UserRepository->getUserByEmail("joshua@gmail.com");
+$row3 = $user3->fetch_array();
+echo "Usuario ID: ".$row3['idUsuario']. 
+     " Email: ".$row3['email'].
+     " Legajo: ".$row3['legajo'];
+
 ?>
 
 </body>

@@ -1,27 +1,38 @@
 <?php
 
+require ("config.php");
+
 class MySQLConnector {
 
-private static $HOST;
+private static $DB_HOST;
 private static $DB_NAME;
-private static $USERNAME;
-private static $PASSWORD;
+private static $DB_USERNAME;
+private static $DB_PASSWORD;
+private static $DB_CHARSET;
 // ESTO ES UN SINGLETON
-private static $instance;
+private static $INSTANCE;
+// luego a implementar Pool de conexiones
+// private static $conn = array();
+private static $conn;
+private static $MAX_CONNECTIONS = 3;
+public $CURR_CONNECTIONS;  
 
 private function __construct()
 {   
-    self::$HOST = "localhost";
-    self::$DB_NAME = "";
-    self::$USERNAME = "";
-    self::$PASSWORD = "";
+    self::$DB_HOST = DB_HOST;
+    self::$DB_NAME = DB_NAME;
+    self::$DB_USERNAME = DB_USERNAME;
+    self::$DB_PASSWORD = DB_PASSWORD;
+    self::$DB_CHARSET = DB_CHARSET;
+    $this->CURR_CONNECTIONS = 0;
 }
 
-private function connectToDB(){
-    $connection = mysqli_connect(self::$HOST, self::$USERNAME, self::$PASSWORD);
+private function createConnection(){
+    $connection = mysqli_connect(self::$DB_HOST, self::$DB_USERNAME, self::$DB_PASSWORD);
     if(!$connection){
         echo "La conexion no tuvo exito";
     } else {
+        $this->CURR_CONNECTIONS++;
         return $connection;
     };
 }
@@ -36,21 +47,39 @@ private function selectDatabase($connection, $db_name){
 
 public static function getInstance(){
     // IMPLEMENTANDO SINGLETON
-    if(!isset(self::$instance)){
-        self::$instance = new MySQLConnector();
+    if(!isset(self::$INSTANCE)){
+        self::$INSTANCE = new MySQLConnector();
     }
-    return self::$instance;
+    return self::$INSTANCE;
 }
 
 public function getConnection(){
-    $connection = self::$instance->connectToDB();
-    self::$instance->selectDatabase($connection, "");
-    return $connection;
+    /*if(isset(self::$conn)){
+        echo "Existe una conexion, devolviendola <hr>";
+        return self::$conn;
+    }
+    else{
+        
+    if($this->CURR_CONNECTIONS < self::$MAX_CONNECTIONS ){
+        $this->CURR_CONNECTIONS++;
+        $connection = self::$INSTANCE->createConnection();
+        return $connection;
+    }*/
+
+    if(!isset(self::$conn)){
+        self::$conn = self::createConnection();
+        self::selectDatabase(self::$conn, "");
+    }
+    return self::$conn;
 }
 
 public function closeConnection($CONN){
     if(isset($CONN)){
+        echo "Current opened connections: ".$this->CURR_CONNECTIONS;
         mysqli_close($CONN);
+        $this->CURR_CONNECTIONS--;
+        echo "Now opened: ".$this->CURR_CONNECTIONS." <hr>";
+        self::$conn = null;
     }
 }
 
