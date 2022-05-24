@@ -2,49 +2,59 @@
 
 class MySQLConnector {
 
-private const HOST = "localhost";
-private const DB_NAME = "";
-private const USERNAME = "";
-private const PASSWORD = "";
-private $CONNECTION;
+private static $HOST;
+private static $DB_NAME;
+private static $USERNAME;
+private static $PASSWORD;
+// ESTO ES UN SINGLETON
+private static $instance;
 
-public function __construct()
-{
-    $this->HOST = "localhost";
-    $this->DB_NAME = "";
-    $this->USERNAME = "";
-    $this->PASSWORD = "";
+private function __construct()
+{   
+    self::$HOST = "localhost";
+    self::$DB_NAME = "";
+    self::$USERNAME = "";
+    self::$PASSWORD = "";
 }
 
 private function connectToDB(){
-    $connection = mysqli_connect(self::HOST, self::USERNAME, self::PASSWORD);
+    $connection = mysqli_connect(self::$HOST, self::$USERNAME, self::$PASSWORD);
     if(!$connection){
         echo "La conexion no tuvo exito";
     } else {
-        $CONNECTION = $connection;
         return $connection;
     };
 }
 
-private function selectDatabase($connection, $db_name=self::DB_NAME){
+private function selectDatabase($connection, $db_name){
     // Si no se pasan parametros, se toma como default la constante DB_NAME
+    if (empty($db_name)){
+        $db_name = self::$DB_NAME;
+    }
     return mysqli_select_db($connection, $db_name);
 }
 
+public static function getInstance(){
+    // IMPLEMENTANDO SINGLETON
+    if(!isset(self::$instance)){
+        self::$instance = new MySQLConnector();
+    }
+    return self::$instance;
+}
+
 public function getConnection(){
-    if(!isset($CONNECTION)){
-        $CONNECTION = $this->connectToDB();
-    }
-    $this->selectDatabase($CONNECTION);
-    return $CONNECTION;
+    $connection = self::$instance->connectToDB();
+    self::$instance->selectDatabase($connection, "");
+    return $connection;
 }
 
-public function closeConnection(){
-    if(isset($CONNECTION)){
-        mysqli_close($CONNECTION);
+public function closeConnection($CONN){
+    if(isset($CONN)){
+        mysqli_close($CONN);
     }
 }
 
+//Common Functions
 function getAll($table){
     $query = "SELECT * FROM ".$table.";";
     $conn = $this->getConnection();
@@ -55,7 +65,7 @@ function getAll($table){
 
 function getOneById($entity, $id){
     $query = "SELECT * FROM ".$entity
-    ." WHERE idUsuario = ".$id. ";" ;
+    ." WHERE id = ".$id. ";" ;
     $conn = $this->getConnection();
     $result = mysqli_query($conn, $query);
     $this->closeConnection();
