@@ -1,23 +1,22 @@
 <?php
 require_once("abstractRepository.php");
 
-class UserRepository extends Repository {
+class RoleRepository extends Repository{
 
-    private const ENTITY = "usuarios";
-    private const IDENTIFIER = "idUsuario";
+    private const ENTITY = "roles";
+    private const IDENTIFIER = "idRol";
     // private static $DBConnector;
 
-    function getAllUsers(){
+    function getAllRoles(){
         $query = "
-            SELECT * FROM ".self::ENTITY."
-            INNER JOIN roles ON idRolUsuario = idRol;";
+            SELECT * FROM ".self::ENTITY. ";";
         $conn = $this->DBInstance()->getConnection();
         $result = mysqli_query($conn, $query);
         $this->DBInstance()->closeConnection($conn);
         return $result;
     }
 
-    function getUserById($id){
+    function getRoleById($id){
         $query = "SELECT * FROM ".self::ENTITY
             ." WHERE ".self::IDENTIFIER.
             " = ".$id. ";" ;
@@ -27,19 +26,10 @@ class UserRepository extends Repository {
         return $result;
     }
 
-    function getUserByEmail($email){
+    function getRoleByDescription($description){
         $query = "SELECT * FROM ".self::ENTITY
-            ." WHERE email = '".$email."' ;" ;
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
-    }
-
-    function createSimpleUser($email, $legajo, $idRol){
-        $query = "INSERT INTO ".self::ENTITY
-            ."(email, legajo, idRol) VALUES"
-            ."email = '$email', legajo = $legajo, idRol = $idRol ;";
+            ." WHERE descripcionRol = '".$description 
+            ."' ;" ;
         $conn = $this->DBInstance()->getConnection();
         $result = mysqli_query($conn, $query);
         $this->DBInstance()->closeConnection($conn);
