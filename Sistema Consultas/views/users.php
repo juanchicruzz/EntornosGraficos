@@ -52,7 +52,7 @@
                         <a href="editUser.php?id=<?=$row['idUsuario']?>" class="btn btn-warning">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <a href="deleteUser.php?id=<?=$row['idUsuario']?>" class="btn btn-danger">
+                        <a href="../controllers/users/deleteUser.php?id=<?=$row['idUsuario']?>" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
