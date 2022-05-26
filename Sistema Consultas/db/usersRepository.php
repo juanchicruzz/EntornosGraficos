@@ -38,8 +38,8 @@ class UserRepository extends Repository {
 
     function createSimpleUser($email, $legajo, $idRol){
         $query = "INSERT INTO ".self::ENTITY
-            ."(email, legajo, idRol) VALUES"
-            ."email = '$email', legajo = $legajo, idRol = $idRol ;";
+            ."(email, legajo, idRolUsuario) " 
+            ."VALUES('$email', '$legajo',  $idRol );";
         $conn = $this->DBInstance()->getConnection();
         $result = mysqli_query($conn, $query);
         $this->DBInstance()->closeConnection($conn);
