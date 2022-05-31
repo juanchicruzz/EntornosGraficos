@@ -11,29 +11,21 @@ class UserRepository extends Repository {
         $query = "
             SELECT * FROM ".self::ENTITY."
             INNER JOIN roles ON idRolUsuario = idRol;";
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
+        return $this->getResults($query);
     }
 
     function getUserById($id){
-        $query = "SELECT * FROM ".self::ENTITY
-            ." WHERE ".self::IDENTIFIER.
-            " = ".$id. ";" ;
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
+        return $this->
+        getOneById(
+            self::ENTITY,
+            self::IDENTIFIER,
+            $id);
     }
 
     function getUserByEmail($email){
         $query = "SELECT * FROM ".self::ENTITY
             ." WHERE email = '".$email."' ;" ;
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
+            return $this->getResults($query);
     }
 
     function createSimpleUser($email, $legajo, $idRol){

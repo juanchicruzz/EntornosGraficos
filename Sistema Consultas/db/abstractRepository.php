@@ -1,5 +1,6 @@
 <?php
 require_once("mySQLConnector.php");
+include_once("utils.php");
 
  class Repository {
 
@@ -7,22 +8,35 @@ require_once("mySQLConnector.php");
         return MySQLConnector::getInstance();
     }
 
-    //Common Functions
-    function getAll($table){
-        $query = "SELECT * FROM ".$table.";";
-        $conn = $this->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->closeConnection();
+    // SELECT STATEMENTS
+    protected function getResults($selectQuery){
+        $conn = $this->DBInstance()->getConnection();
+        $result = mysqli_query($conn, $selectQuery);
+        $this->DBInstance()->closeConnection($conn);
         return $result;
     }
 
-    function getOneById($entity, $id){
+    // INSERT, UPDATE, DELETE STATEMENTS
+    public function executeQuery($query, array $params){
+        $conn = $this->DBInstance()->getConnection();
+        $stmt = $conn->stmt_init();
+        if($stmt->prepare($query)){
+            Utils::customBindParams($params, $stmt);
+            $stmt->execute();
+        };
+        $this->DBInstance()->closeConnection($conn);
+    }
+
+    //Common Functions
+    function getAll($table){
+        $query = "SELECT * FROM ".$table.";";
+        return $this->getResults($query);
+    }
+
+    function getOneById($entity, $identifier, $id){
         $query = "SELECT * FROM ".$entity
-        ." WHERE id = ".$id. ";" ;
-        $conn = $this->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->closeConnection();
-        return $result;
+        ." WHERE ".$identifier." = ".$id. ";";
+        return $this->getResults($query);
     }
 
     
