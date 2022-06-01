@@ -64,17 +64,4 @@
        </table>
     </div>
 
-
-<hr>
-<hr>
-
-<?php   
-                $UserRepo = new UserRepository();
-                $query = "INSERT INTO roles VALUES(?, ?)";
-                $params = [111, "The big ffone role"];
-                $result = $UserRepo->executeQuery($query, $params);
-                echo $result;
-            ?>
-
-
 <?php include("../partials/footer.php");?>

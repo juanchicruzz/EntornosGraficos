@@ -29,35 +29,31 @@ class UserRepository extends Repository {
     }
 
     function createSimpleUser($email, $legajo, $idRol){
-        $query = "INSERT INTO ".self::ENTITY
-            ."(email, legajo, idRolUsuario) " 
-            ."VALUES('$email', '$legajo',  $idRol );";
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
+        $query = '
+            INSERT INTO '.self::ENTITY
+            .'(email, legajo, idRolUsuario) ' 
+            .'VALUES(?, ?, ?);';
+        return $this->executeQuery(
+            $query, 
+            [$email, $legajo, $idRol]);
     }
 
     function updateUser($email, $legajo, $idUsuario){
-        $query = "UPDATE ".self::ENTITY." SET "
-        ."email='$email', legajo='$legajo'"
-        ." WHERE ".self::IDENTIFIER. "=$idUsuario;"; 
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
+        $query = 'UPDATE '.self::ENTITY.' SET '
+            .'email=?, legajo=?'
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            [$email, $legajo, $idUsuario]);
     }
 
     function deleteUser($idUsuario){
-        $query = "DELETE FROM ".self::ENTITY
-        ." WHERE ".self::IDENTIFIER. "=$idUsuario;"; 
-        $conn = $this->DBInstance()->getConnection();
-        $result = mysqli_query($conn, $query);
-        if(!$result){
-            echo("Error: ".$conn->error);
-        }
-        $this->DBInstance()->closeConnection($conn);
-        return $result;
+        $query = '
+            DELETE FROM '.self::ENTITY
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            [$idUsuario]);
     }
 }
 
