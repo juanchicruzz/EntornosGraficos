@@ -1,17 +1,17 @@
 <?php
 require_once("abstractRepository.php");
 
-class RoleRepository extends Repository{
+class MateriaRepository extends Repository{
 
-    private const ENTITY = "roles";
-    private const IDENTIFIER = "idRol";
+    private const ENTITY = "materias";
+    private const IDENTIFIER = "idMateria";
     // private static $DBConnector;
 
-    function getAllRoles(){
+    function getAllMaterias(){
         return $this->getAll(self::ENTITY);
     }
 
-    function getRoleById($id){
+    function getMateriaById($id){
         return $this->getOneById(
             self::ENTITY,
             self::IDENTIFIER,
@@ -19,10 +19,10 @@ class RoleRepository extends Repository{
         );
     }
 
-    function getRoleByDescription($description){
+    function getMateriaByDescription($description){
         $query = "
             SELECT * FROM ".self::ENTITY
-            ." WHERE descripcionRol = '".$description."' ;" ;
+            ." WHERE descripcionMateria = '".$description."' ;" ;
         return $this->getResults($query);
     }
 }

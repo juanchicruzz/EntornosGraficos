@@ -23,6 +23,8 @@ class Utils{
         $bindString = self::getParamsAsString($params);
         $nArgs = count($params);
         switch ($nArgs){
+            case 0:
+                break;
             case 1: 
                 $stmt->bind_param(
                     $bindString, $params[0]);

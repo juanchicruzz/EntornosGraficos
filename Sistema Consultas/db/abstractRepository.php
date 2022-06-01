@@ -17,12 +17,11 @@ include_once("utils.php");
     }
 
     // INSERT, UPDATE, DELETE STATEMENTS
-    public function executeQuery($query, array $params): int{
+    public function executeQuery($query, array $params = []): int{
         $nRows = 0;
         $conn = $this->DBInstance()->getConnection();
         $stmt = $conn->stmt_init();
         if($stmt->prepare($query)){
-            echo $query;
             Utils::customBindParams($params, $stmt);
             $stmt->execute();
             $nRows = $stmt->affected_rows; 
