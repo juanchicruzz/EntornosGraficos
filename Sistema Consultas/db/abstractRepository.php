@@ -26,6 +26,7 @@ include_once("utils.php");
             $stmt->execute();
             $nRows = $stmt->affected_rows; 
         };
+        $stmt->close();
         $this->DBInstance()->closeConnection($conn);
         return $nRows;
     }

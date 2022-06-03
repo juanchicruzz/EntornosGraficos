@@ -55,6 +55,16 @@ class UserRepository extends Repository {
             $query, 
             [$idUsuario]);
     }
+
+    function registerUser($email, $password, $legajo, $idRolUsuario){
+        $query = '
+            INSERT INTO '.self::ENTITY
+            .'(email, password, legajo, idRolUsuario) ' 
+            .'VALUES(?, ?, ?, ?);';
+        return $this->executeQuery(
+            $query, 
+            [$email, $password, $legajo, $idRolUsuario]);
+    }
 }
 
 ?>
