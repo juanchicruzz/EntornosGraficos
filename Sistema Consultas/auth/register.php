@@ -1,10 +1,9 @@
 <?php
 
-require_once("../db/config.php");
 require_once("../db/usersRepository.php");
  
-$email = $password = $confirm_password = "";
-$email_err = $password_err = $confirm_password_err = "";
+$email = $password = $confirm_password = $legajo = "";
+$email_err = $password_err = $confirm_password_err = $legajo_err = "";
  
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -15,8 +14,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } elseif(!isEmailValid($_POST["email"])){
         $email_err = "Por favor ingrese un email valido";
     } else{
+        $emailSanitized = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
         $UserRepository = new UserRepository();
-        $result = $UserRepository->getUserByEmail($_POST["email"]);
+        $result = $UserRepository->getUserByEmail($emailSanitized);
         if($result->num_rows > 0){
             $email_err = "Este email ya esta registrado.";
         } else{
@@ -47,6 +47,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     }   
+
+    // Validar legajo
+    $legajo = trim($_POST["legajo"]);
+    if(isset($legajo)){
+        if(empty(trim($legajo))){
+        $legajo_err = "Por favor ingrese un legajo";     
+        } elseif(strlen(trim($legajo)) > 8){
+            $legajo_err = "El legajo no debe ser mayor a 8 caracteres.";
+        }
+    }
     
     // Validar que no haya errores
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
