@@ -10,11 +10,10 @@ private static $DB_NAME;
 private static $DB_USERNAME;
 private static $DB_PASSWORD;
 private static $DB_CHARSET;
-// ESTO ES UN SINGLETON
 private static $INSTANCE;
 // luego a implementar Pool de conexiones
 // private static $conn = array();
-private static $conn;
+private static $CONNECTION;
 private static $MAX_CONNECTIONS = 3;
 public $CURR_CONNECTIONS;  
 
@@ -34,10 +33,9 @@ private function createConnection(){
     mysqli_set_charset($connection, self::$DB_CHARSET);
     if(!$connection){
         echo "La conexion no tuvo exito";
-    } else {
-        $this->CURR_CONNECTIONS++;
-        return $connection;
-    };
+        return null;
+    }
+    return $connection;
 }
 
 private function selectDatabase($connection, $db_name){
@@ -57,33 +55,25 @@ public static function getInstance(){
 }
 
 public function getConnection(){
-    /*if(isset(self::$conn)){
-        echo "Existe una conexion, devolviendola <hr>";
-        return self::$conn;
+    // Si no existe una conexion creada la creamos, si ya existe se devuelve
+    if(!isset(self::$CONNECTION)){
+        $newConnection = self::createConnection();
+        self::$CONNECTION = $newConnection;
     }
-    else{
-        
-    if($this->CURR_CONNECTIONS < self::$MAX_CONNECTIONS ){
-        $this->CURR_CONNECTIONS++;
-        $connection = self::$INSTANCE->createConnection();
-        return $connection;
-    }*/
-
-    if(!isset(self::$conn)){
-        self::$conn = self::createConnection();
-        // no hace falta seleccionar la db ahora porque la paso como cuarto parametro en la creacion
-        // self::selectDatabase(self::$conn, "");
-    }
-    return self::$conn;
+    return self::$CONNECTION;
 }
 
-public function closeConnection($CONN){
-    if(isset($CONN)){
-        //echo "Current opened connections: ".$this->CURR_CONNECTIONS;
-        mysqli_close($CONN);
-        $this->CURR_CONNECTIONS--;
-        //echo "Now opened: ".$this->CURR_CONNECTIONS." <hr>";
-        self::$conn = null;
+public function closeConnection($conn){
+    if(isset($conn)){
+        mysqli_close($conn);
+        self::$CONNECTION = null;
+    }
+}
+
+public function releaseConnection($connection){
+    // La guardamos para volver a reutilizar
+    if(isset($connection)){
+        self::$CONNECTION = $connection;
     }
 }
 

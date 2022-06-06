@@ -12,7 +12,7 @@ include_once("utils.php");
     protected function getResults($selectQuery){
         $conn = $this->DBInstance()->getConnection();
         $result = mysqli_query($conn, $selectQuery);
-        $this->DBInstance()->closeConnection($conn);
+        $this->DBInstance()->releaseConnection($conn);
         return $result;
     }
 
@@ -27,7 +27,7 @@ include_once("utils.php");
             $nRows = $stmt->affected_rows; 
         };
         $stmt->close();
-        $this->DBInstance()->closeConnection($conn);
+        $this->DBInstance()->releaseConnection($conn);
         return $nRows;
     }
 
