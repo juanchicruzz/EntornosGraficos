@@ -1,6 +1,6 @@
 <?php
 
-require_once("../db/usersRepository.php");
+require_once("../db/repositories/usersRepository.php");
  
 $email = $password = $confirm_password = $legajo = "";
 $email_err = $password_err = $confirm_password_err = $legajo_err = "";

@@ -1,5 +1,5 @@
 <?php
-require_once("../db/usersRepository.php");
+require_once("../db/repositories/usersRepository.php");
 
 session_start();
  

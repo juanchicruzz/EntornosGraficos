@@ -1,6 +1,7 @@
 <?php
-require_once("mySQLConnector.php");
-include_once("utils.php");
+
+require_once(dirname( __DIR__ ) . "/utils.php");
+require_once(dirname( __DIR__ ) . "/mySQLConnector.php");
 
  class Repository {
 
