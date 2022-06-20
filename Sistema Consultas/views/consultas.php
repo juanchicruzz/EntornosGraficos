@@ -3,6 +3,13 @@ include("../partials/header.php");
 require_once("../db/repositories/consultasRepository.php");
 $consultaRepository = new ConsultaRepository();
 $consultas = $consultaRepository->getConsultasGeneral();
+if(isset($_GET["carrera"])){
+    $consultas = $consultaRepository->getConsultasByCarrera($_GET["carrera"]);
+}
+if(isset($_GET["a"])){
+    $consultas = $consultaRepository->getConsultasByAño($_GET["a"]);
+}
+
 ?>
 
 <div class="container">
@@ -17,15 +24,17 @@ $consultas = $consultaRepository->getConsultasGeneral();
                     Carrera
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item active" aria-current="true" href="#">ISI</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>">TODAS</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">IE</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?carrera=1">ISI</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">IM</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?carrera=3">IE</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">IQ</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?carrera=4">IM</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">IC</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?carrera=5">IQ</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?carrera=2">IC</a></li>
                 </ul>
             </div>
         </div>
@@ -35,11 +44,11 @@ $consultas = $consultaRepository->getConsultasGeneral();
                     Año
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">1°</a></li>
-                    <li><a class="dropdown-item" href="#">2°</a></li>
-                    <li><a class="dropdown-item" href="#">3°</a></li>
-                    <li><a class="dropdown-item" href="#">4°</a></li>
-                    <li><a class="dropdown-item" href="#">5°</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?a=1">1°</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?a=2">2°</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?a=3">3°</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?a=4">4°</a></li>
+                    <li><a class="dropdown-item" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?a=5">5°</a></li>
                 </ul>
             </div>
         </div>
@@ -73,7 +82,6 @@ $consultas = $consultaRepository->getConsultasGeneral();
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Fecha</th>
                     <th scope="col">Dia/Hora</th>
                     <th scope="col">Profesor</th>
                     <th scope="col">Materia</th>
@@ -82,18 +90,23 @@ $consultas = $consultaRepository->getConsultasGeneral();
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $consultas->fetch_array()) { ?>
+                
+                <?php 
+                if($consultas->num_rows == 0){
+                    echo "<tr><td colspan='5'>No hay consultas disponibles</td></tr>";
+                } else{
+                while ($row = $consultas->fetch_array()) { ?>
                     <tr>
-                        <td><?= $row['fecha'] ?></td>
                         <td scope="row"><?= strtoupper($row['dia']) . " - " . $row['horarioFijo'] ?></td>
                         <td><?= $row['profesor'] ?></td>
                         <td><?= $row['descripcionMateria'] ?></td>
                         <td><?= $row['nombreCarrera'] ?></td>
-                        <td><a href="inscripcion.php?id=<?= $row['idConsulta'] ?>">
+                        <td><a href="inscripcion.php?p=<?= $row['idProfesor']?>&m=<?= $row['idMateria']?>&c=<?= $row['idCarrera']?>">
                                 <i class="fas fa-user-check"></i>
                             </a></td>
                     </tr>
-                <?php } ?>
+                <?php } 
+                }?>
             </tbody>
         </table>
     </div>
