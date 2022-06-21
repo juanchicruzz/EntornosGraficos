@@ -13,6 +13,7 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
     $consultas = $consultaRepository->getConsultasGeneral();
 }
 
+
 ?>
 
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaConsultas.js"></script>

@@ -1,5 +1,5 @@
 <?php
-    include("../../db/usersRepository.php");
+    include("../../db/repositories/usersRepository.php");
 
     if(isset($_POST['edit_user'])){
         $UserRepository = new UserRepository();

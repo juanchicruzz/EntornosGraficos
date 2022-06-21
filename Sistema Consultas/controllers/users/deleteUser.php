@@ -1,5 +1,5 @@
 <?php
-    require_once("../db/usersRepository.php");
+    require_once("../../db/repositories/usersRepository.php");
 
     if(isset($_GET['id'])){
         $UserRepository = new UserRepository();

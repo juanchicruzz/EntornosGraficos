@@ -1,7 +1,9 @@
 <?php
 require_once("../db/repositories/usersRepository.php");
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
  
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: ../views/index.php");
@@ -25,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     if(empty(trim($_POST["password"]))){
-        $password_err = "Por favor ingrese su contraseña.";
+        $password_err = "Por favor ingrese su contraseÃ±a.";
     } else{
         $password = trim($_POST["password"]);
     }
@@ -36,15 +38,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $result = $UserRepository->getUserByEmail($email);
         if($result->num_rows == 1) {
             $row = $result->fetch_assoc();
-            $hashed_password = $row['password']; 
-            echo "PASSWORD = " .$password;   
-            echo " - " . $hashed_password;          
+            $hashed_password = $row['password'];          
             if(password_verify($password, $hashed_password)){
-                session_start();
-                $_SESSION["loggedin"] = true;
-                $_SESSION["id"] = $row["idUsuario"];      
-                $_SESSION["email"] = $row["email"];                    
-                header("location: ../views/index.php");
+                if($row["idRolUsuario"] == "2"){
+                    if($row["validado"] == 1){
+                        session_start();
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["id"] = $row["idUsuario"];      
+                        $_SESSION["email"] = $row["email"];
+                        $_SESSION["userType"] = $row["idRolUsuario"];
+        
+                        header("location: ../views/index.php");
+                    } else {
+                        $login_err = "Usuario Profesor no esta validado.";
+                    }
+                }else{
+                    session_start();
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["id"] = $row["idUsuario"];      
+                    $_SESSION["email"] = $row["email"];     
+                    $_SESSION["userType"] = $row["idRolUsuario"];
+                    header("location: ../views/index.php");
+                }
+
             } else{
                 $login_err = "Credenciales invalidas. Por favor intente de nuevo.";
                 }
