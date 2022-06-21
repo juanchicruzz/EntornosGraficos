@@ -56,6 +56,31 @@ class ConsultaRepository extends Repository{
         WHERE m.añoCursado = $añoCarrera";
         return $this->getResults($query);
     }
+
+    function getConsultasByPrimaryKey($profesor, $materia, $carrera){
+        $query = "SELECT c.fecha, c.estado, c.modalidad, 
+        ifNull(c.URL, 'No aplica') as url, 
+        ifNull(c.horarioAlternativo, 'No aplica') as horarioAlternativo
+        FROM consultas c
+        WHERE idCarrera = $carrera AND idProfesor = $profesor AND idMateria = $materia;";
+        return $this->getResults($query);
+    }
+
+    function getDetallesParaInscripcion($idProfesor, $idMateria, $idCarrera){
+        $query = "SELECT concat(u.nombre, ' ', u.apellido) as profesor, 
+        m.descripcionMateria as materia, c.nombreCarrera as carrera
+        FROM profesor_materia pm
+        INNER JOIN usuarios u 
+            ON u.idUsuario = pm.idProfesor
+        INNER JOIN materias m 
+            ON m.idMateria = pm.idMateria
+        INNER JOIN carreras c
+            ON c.idCarrera = pm.idCarrera
+        WHERE pm.idProfesor = $idProfesor 
+        AND pm.idMateria = $idMateria 
+        AND pm.idCarrera = $idCarrera";
+        return $this->getResults($query);
+    }
 }
 
 ?>
