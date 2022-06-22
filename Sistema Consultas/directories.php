@@ -7,6 +7,7 @@ const SERVER_ROOT = "localhost/sistema-consultas";
 define('DIR_INDEX', $_SERVER['DOCUMENT_ROOT'] . ROOT . "/index.php");
 define('DIR_HEADER', $_SERVER['DOCUMENT_ROOT'] . ROOT . "/partials/header.php");
 define('DIR_FOOTER', $_SERVER['DOCUMENT_ROOT'] . ROOT . "/partials/footer.php");
+define('DIR_NAV_BAR', $_SERVER['DOCUMENT_ROOT'] . ROOT . "/partials/navbar.php");
 define('DIR_PARTIALS', $_SERVER['DOCUMENT_ROOT'] . ROOT . "/partials");
 
 // CARPETAS PARA INCLUIR ARCHIVOS
