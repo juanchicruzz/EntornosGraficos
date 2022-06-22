@@ -1,4 +1,7 @@
-<?php include("../partials/header.php");?>
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+include(DIR_HEADER);
+?>
 
 <div class="container p-4">
     <div class="row justify-content-center">
@@ -6,7 +9,7 @@
             <h1>Crear Usuario</h1>
         </div>
     </div>
-<form action="../controllers/users/addUser.php" method="POST">
+<form action="<?=REDIR_CONTROLLERS?>/users/addUser.php" method="POST">
     <div class="row justify-content-center">
         <div class="col-md-6 border p-3  bg-light ">
                 <div class="form-group mb-3">
@@ -34,4 +37,4 @@
 
 
 
-<?php include("../partials/footer.php");?>
+<?php include(DIR_FOOTER);;?>

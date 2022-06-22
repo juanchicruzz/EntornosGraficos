@@ -1,16 +1,16 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
-require_once(SECURITY);
+require_once(DIR_SECURITY);
 
 // Solo pueden ingresar los profesores a esta vista, si es alumno se redirige a login o index
 Security::verifyUser('2');
 // 
-include(HEADER)
+include(DIR_HEADER)
 
 ?>
 
 <?php
-    include(REPOSITORIES . "/usersRepository.php");
+    include(DIR_REPOSITORIES . "/usersRepository.php");
 ?>
     <div class="container p-4">
         <div class="row bg-light border">
@@ -62,7 +62,7 @@ include(HEADER)
                         <a href="editUser.php?id=<?=$row['idUsuario']?>" class="btn btn-warning">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <a href="../controllers/users/deleteUser.php?id=<?=$row['idUsuario']?>" class="btn btn-danger">
+                        <a href="<?=REDIR_CONTROLLERS?>/users/deleteUser.php?id=<?=$row['idUsuario']?>" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
@@ -74,4 +74,4 @@ include(HEADER)
        </table>
     </div>
 
-<?php include(FOOTER);?>
+<?php include(DIR_FOOTER);?>

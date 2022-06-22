@@ -1,7 +1,11 @@
-<?php include("../partials/header.php");
-include("../db/usersRepository.php");
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+
+include(DIR_REPOSITORIES . "/usersRepository.php");
 $UserRepository = new UserRepository();
 $result = $UserRepository->getUserById($_GET['id'])->fetch_array();
+
+include(DIR_HEADER);
 ?>
 
 <div class="container p-4">
@@ -10,7 +14,7 @@ $result = $UserRepository->getUserById($_GET['id'])->fetch_array();
             <h1>Modificar Usuario</h1>
         </div>
     </div>
-<form action="../controllers/users/editUser.php" method="POST">
+<form action="<?=REDIR_CONTROLLERS?>/users/editUser.php" method="POST">
     <div class="row justify-content-center">
         <div class="col-md-6 border p-3  bg-light ">
                 <div class="form-group mb-3">
@@ -32,4 +36,4 @@ $result = $UserRepository->getUserById($_GET['id'])->fetch_array();
 
 
 
-<?php include("../partials/footer.php");?>
+<?php include(DIR_FOOTER);?>

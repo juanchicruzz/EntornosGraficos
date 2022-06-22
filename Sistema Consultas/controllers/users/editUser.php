@@ -1,5 +1,6 @@
 <?php
-    include("../../db/repositories/usersRepository.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+require_once(DIR_REPOSITORIES . "/usersRepository.php");
 
     if(isset($_POST['edit_user'])){
         $UserRepository = new UserRepository();
@@ -12,7 +13,7 @@
         }
         $_SESSION['message'] = "Usuario actualizado exitosamente";
         $_SESSION['message_type'] = "warning";
-        header("Location: ../../views/users.php");
+        header("Location: " . REDIR_VIEWS . "/admin/users.php");
     }
 
 ?>

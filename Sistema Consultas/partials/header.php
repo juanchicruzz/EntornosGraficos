@@ -19,7 +19,7 @@
 </head>
 
 <?php
-  
+  include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 ?>
 
 
@@ -27,13 +27,13 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <img src=<?=$_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/partials/utnLogo.png"?> alt="Home Button" style="width: 50px; height: auto ">
+        <img src="<?=REDIR_PARTIALS?>/utnLogo.png" alt="Home Button" style="width: 50px; height: auto ">
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="index.php" class="nav-link px-2 link-light">Inicio</a></li>
-          <li><a href="consultas.php" class="nav-link px-2 link-light">Consultas</a></li>
-          <li><a href="inscripciones.php" class="nav-link px-2 link-light">Mis Inscripciones</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/index.php" class="nav-link px-2 link-light">Inicio</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/consultas.php" class="nav-link px-2 link-light">Consultas</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/inscripciones.php" class="nav-link px-2 link-light">Mis Inscripciones</a></li>
         </ul>
 
         <div class="dropdown text-end">

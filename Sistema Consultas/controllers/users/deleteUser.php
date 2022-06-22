@@ -1,5 +1,6 @@
 <?php
-    require_once("../../db/repositories/usersRepository.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+require_once(DIR_REPOSITORIES . "/usersRepository.php");
 
     if(isset($_GET['id'])){
         $UserRepository = new UserRepository();
@@ -10,7 +11,7 @@
         }
         $_SESSION['message'] = "Usuario eliminado exitosamente";
         $_SESSION['message_type'] = "secondary";
-        header("Location: ../../views/users.php");
+        header("Location: " . REDIR_VIEWS . "/admin/users.php");
     }
 
 ?>
