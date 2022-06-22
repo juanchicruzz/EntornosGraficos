@@ -12,9 +12,6 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
 
 ?>
 
-
-
-
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaInscripcion.js"></script>
 <script>
     crearTabla()

@@ -14,6 +14,16 @@ class UserRepository extends Repository {
         return $this->getResults($query);
     }
 
+    function getDocenteNoValidated(){
+        $query = "
+            SELECT * FROM ".self::ENTITY."
+            INNER JOIN roles ON idRolUsuario = idRol
+            WHERE validado = 0 AND
+            idRol = 2";
+            
+        return $this->getResults($query);
+    }
+
     function getUserById($id){
         return $this->
         getOneById(
@@ -45,6 +55,15 @@ class UserRepository extends Repository {
         return $this->executeQuery(
             $query, 
             [$email, $legajo, $idUsuario]);
+    }
+
+    function validateUser($idUsuario){
+        $query = 'UPDATE '.self::ENTITY.' SET '
+            .'validado =?'
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            [1,$idUsuario]);
     }
 
     function deleteUser($idUsuario){
