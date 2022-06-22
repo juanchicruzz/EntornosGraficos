@@ -12,9 +12,6 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
 
 ?>
 
-
-
-
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaInscripcion.js"></script>
 <script>
     crearTabla()
@@ -57,9 +54,13 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                 <td><?= $row['modalidad'] ?></td>
                                 <td><?= $row['url'] ?></td>
                                 <td><?= $row['horarioAlternativo'] ?></td>
-                                <td><a href="inscripcion.php?p=<?=$profesor?>&m=<?=$materia?>&c=<?=$carrera?>">
+                                <?php if($row['estado'] == "Bloqueada"){
+                                    echo '<td align="center"><a role="link" aria-disabled="true"><i class="fas fa-user-check" style="color:grey;"></i></a></td>';
+                                }else{
+                                    echo '<td align="center" ><a href="inscripcion.php?p=<?=$profesor?>&m=<?=$materia?>&c=<?=$carrera?>">
                                         <i class="fas fa-user-check"></i>
-                                    </a></td>
+                                    </a></td>';
+                                } ?>
                             </tr>
                     <?php }
                     } ?>
