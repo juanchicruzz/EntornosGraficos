@@ -10,12 +10,12 @@ Class Security {
     static function verifyUser($type){
         if(!isset($_SESSION['loggedin']))
         {
-            header("Location: " . AUTH . "/login.php");
+            header("Location: " . DIR_AUTH . "/login.php");
             exit;
         }
         if(!($_SESSION['userType'] == $type))
         {
-            header("Location: " . AUTH . "/login.php");
+            header("Location: " . DIR_AUTH . "/login.php");
             exit;
         }
     }

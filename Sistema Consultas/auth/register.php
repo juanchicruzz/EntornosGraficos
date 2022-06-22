@@ -1,6 +1,6 @@
 <?php
-
-require_once("../db/repositories/usersRepository.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+require_once(DIR_REPOSITORIES . "/usersRepository.php");
  
 $email = $password = $confirm_password = $legajo = "";
 $email_err = $password_err = $confirm_password_err = $legajo_err = "";
@@ -68,7 +68,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $password,
             $legajo,
             $idRolUsuario)){
-            header("location: login.php");
+            header("Location: " . REDIR_AUTH . "/login.php");
+            exit;
             } else{
                 echo "Algo salio mal, intente nuevamente.";
             }
@@ -139,7 +140,7 @@ function isEmailValid($email){
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            <p>¿Ya tenes una cuenta? <a href="login.php">Logueate acá.</a>.</p>
             </div> 
             
             

@@ -1,16 +1,17 @@
 <?php
-require_once("../db/repositories/usersRepository.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+require_once(DIR_REPOSITORIES . "/usersRepository.php");
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
  
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../views/index.php");
+    header("Location: " . REDIR_VIEWS . "/index.php");
     exit;
 }
 
-require_once("../db/config.php");
+require_once(DIR_DB ."/config.php");
 
 $email = $password = "";
 $email_err = $password_err = $login_err = "";
@@ -47,8 +48,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["id"] = $row["idUsuario"];      
                         $_SESSION["email"] = $row["email"];
                         $_SESSION["userType"] = $row["idRolUsuario"];
-        
-                        header("location: ../views/index.php");
+                        header("Location: " . REDIR_VIEWS . "/index.php");
+                        exit;
                     } else {
                         $login_err = "Usuario Profesor no esta validado.";
                     }
@@ -58,7 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $_SESSION["id"] = $row["idUsuario"];      
                     $_SESSION["email"] = $row["email"];     
                     $_SESSION["userType"] = $row["idRolUsuario"];
-                    header("location: ../views/index.php");
+                    header("Location: " . REDIR_VIEWS . "/index.php");
+                    exit;
                 }
 
             } else{
@@ -110,7 +112,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>¿No tenes una cuenta aún? <a href="register.php">Registrate ahora.</a>.</p>
         </form>
     </div>
 </body>
