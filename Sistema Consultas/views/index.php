@@ -42,4 +42,4 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <a href="<?=REDIR_AUTH?>/logout.php" class="btn btn-danger ml-3">Log out</a>
     </p>
 
-    <?php include(DIR_FOOTER);?>
+<?php include(DIR_FOOTER);?>
