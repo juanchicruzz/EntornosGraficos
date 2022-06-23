@@ -8,6 +8,20 @@ require_once(DIR_REPOSITORIES . "/consultasRepository.php");
 $consultaRepository = new ConsultaRepository();
 
 
+
+
+$agregandoCosas  = "asd";
+
+
+/*
+
+Comentario
+
+
+Conflicts 
+*/
+
+
 $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
 
 
