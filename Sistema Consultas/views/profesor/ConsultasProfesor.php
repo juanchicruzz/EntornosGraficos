@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+require_once(DIR_SECURITY);
+Security::verifyUserIsProfessor();
 
 include(DIR_HEADER);
 require_once(DIR_REPOSITORIES . "/consultasRepository.php");

@@ -1,7 +1,8 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
-
 require_once(DIR_REPOSITORIES . "/consultasRepository.php");
+require_once(DIR_SECURITY);
+Security::verifyUserIsProfessor();
 
 $consultaRepository = new ConsultaRepository();
 $result = $consultaRepository->getConsultaById($_GET['id'])->fetch_array();
