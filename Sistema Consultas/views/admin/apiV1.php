@@ -4,6 +4,8 @@
 require_once("../db/repositories/rolesRepository.php");
 require_once("../db/repositories/usersRepository.php");
 require_once("../db/repositories/materiasRepository.php");
+Security::verifyUserIsAdmin();
+
 ?>
 <?php
 $UserRepo = new UserRepository();

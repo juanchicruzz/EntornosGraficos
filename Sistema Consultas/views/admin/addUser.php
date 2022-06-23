@@ -1,6 +1,9 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 include(DIR_HEADER);
+require_once(DIR_SECURITY);
+Security::verifyUserIsAdmin();
+
 ?>
 
 <div class="container p-4">

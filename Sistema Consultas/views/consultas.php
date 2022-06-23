@@ -1,6 +1,7 @@
 <?php
-include("../partials/header.php");
-require_once("../db/repositories/consultasRepository.php");
+session_start();
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+require_once(DIR_REPOSITORIES . "/consultasRepository.php");
 $consultaRepository = new ConsultaRepository();
 
 if (isset($_GET["carrera"])) {
@@ -20,6 +21,8 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
 <script>
     crearTabla()
 </script>
+
+<?php require_once(DIR_HEADER);?>
 
 <div class="container">
     <div class="row">

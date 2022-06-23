@@ -2,8 +2,8 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 require_once(DIR_SECURITY);
 
-// Solo pueden ingresar los profesores a esta vista, si es alumno se redirige a login o index
-Security::verifyUser('2');
+// Solo pueden ingresar los admin a esta vista, si es alumno se redirige a login o index
+Security::verifyUserIsAdmin();
 // 
 include(DIR_HEADER)
 

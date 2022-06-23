@@ -2,7 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 ?>
 
-<header class="p-3 mb-3 border-bottom bg-primary">
+<header class="p-3 mb-3 border-bottom bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="<?=REDIR_VIEWS?>/index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -12,7 +12,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="<?=REDIR_VIEWS?>/index.php" class="nav-link px-2 link-light">Inicio</a></li>
           <li><a href="<?=REDIR_VIEWS?>/consultas.php" class="nav-link px-2 link-light">Consultas</a></li>
-          <li><a href="<?=REDIR_VIEWS?>/inscripciones.php" class="nav-link px-2 link-light">Mis Inscripciones</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/admin/users.php" class="nav-link px-2 link-light">ABM Alumnos</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/admin/validacionDocente.php" class="nav-link px-2 link-light">Validacion Docentes</a></li>
         </ul>
 
         <div class="dropdown text-end">
@@ -20,7 +21,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
           <i class="fa fa-fw fa-user rounded-circle" alt="mdo" width="32" height="32" ></i>
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" >
-            <li class="dropdown-item"><strong ><?=$_SESSION['email']?></strong></li>
+          <li class="dropdown-item readonly"><strong ><?=$_SESSION['email']?></strong></li>
             <li><a class="dropdown-item" href="#">Perfil</a></li>
             <li><a class="dropdown-item" href="#">Configuración</a></li>
             <li><hr class="dropdown-divider"></li>

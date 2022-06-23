@@ -1,7 +1,9 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
-
 include(DIR_REPOSITORIES . "/usersRepository.php");
+require_once(DIR_SECURITY);
+Security::verifyUserIsAdmin();
+
 $UserRepository = new UserRepository();
 $result = $UserRepository->getUserById($_GET['id'])->fetch_array();
 

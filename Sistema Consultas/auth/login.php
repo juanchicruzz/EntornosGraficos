@@ -40,19 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = $result->fetch_assoc();
             $hashed_password = $row['password'];
             if (password_verify($password, $hashed_password)) {
-                if ($row["idRolUsuario"] == "2") {
-                    if ($row["validado"] == 1) {
-                        session_start();
-                        $_SESSION["loggedin"] = true;
-                        $_SESSION["id"] = $row["idUsuario"];
-                        $_SESSION["email"] = $row["email"];
-                        $_SESSION["userType"] = $row["idRolUsuario"];
-                        header("Location: " . REDIR_VIEWS . "/index.php");
-                        exit;
-                    } else {
-                        $login_err = "Usuario Profesor no esta validado.";
-                    }
-                } else {
+                // Verificar que si es profesor debe estar validado
+                if ($row["idRolUsuario"] == "2" && $row["validado"] == 0) {
+                    $login_err = "Usuario Profesor no esta validado.";
+                } 
+                // Sino se setea todo en sesion para cualquier tipo de usuario
+                 else {
                     session_start();
                     $_SESSION["loggedin"] = true;
                     $_SESSION["id"] = $row["idUsuario"];

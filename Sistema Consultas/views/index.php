@@ -8,38 +8,29 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 ?>
  
-<?php include(DIR_HEADER);?>
+<?php require_once(DIR_HEADER);?>
 
-    <h1 class="my-5">Bienvenido al sitio, <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b></h1>
-    <?php echo DIR_AUTH . "/logout.php"; ?>
-    <br>
-    
-    <?php echo $_SERVER['PHP_SELF'] ?>
-    <br>
-    <?php echo $_SERVER['SERVER_NAME'] ?>
-    <br>
-    <?php echo $_SERVER['SCRIPT_FILENAME'] ?>
-    <br>
-    <?php echo $_SERVER['DOCUMENT_ROOT'] ?>
-    <br>
-    <?php echo $_SERVER["REQUEST_URI"] ?>
-<h3>real paths </h3>
+    <div class="container bg-light border">
+        <div class="row">
+            <h1 class="my-5">Bienvenido al sitio, <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b></h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Empezá a navegar por los Horarios de Consultas</h4>
+                <a href="<?=REDIR_VIEWS?>/consultas.php" class="btn btn-primary">Comenzar</a>
+            </div>
+            <div class="col-md-3">
 
-<?php 
-    echo basename($_SERVER['PHP_SELF'])?>
-    <br>
-    <?php echo basename($_SERVER['SERVER_NAME'])?>
-    <br>
-    <?php echo basename($_SERVER['SCRIPT_FILENAME'])?>
-    <br>
-    <?php echo basename($_SERVER['DOCUMENT_ROOT'])?>
-    <br>
-    <?php echo basename($_SERVER['REQUEST_URI'])?>
+            </div>
+            <div class="col-md-3">
+            <p>
+            <a href="<?=REDIR_AUTH?>/logout.php" class="btn btn-danger ml-3">Cerrar sesión</a>
+        </p>
+            </div>
+        </div>
+        <br><br><br> 
+    </div>
 
-
-
-    <p>
-        <a href="<?=REDIR_AUTH?>/logout.php" class="btn btn-danger ml-3">Log out</a>
-    </p>
+    <br> <br> 
 
 <?php include(DIR_FOOTER);?>
