@@ -20,8 +20,24 @@
 
 <?php
   include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+    switch($_SESSION["userType"]){
+      case "1": {
+        include_once(DIR_NAV_BAR);
+        break;
+      }
+      case "2": {
+        include_once(DIR_NAV_BAR_PROFESSOR);
+        break;
+      }
+      case "3": {
+        include_once(DIR_NAV_BAR_ADMIN);
+        break;
+      }
+  
+    }  
+  }   
 
-  include_once(DIR_NAV_BAR);
 ?>
 
 
