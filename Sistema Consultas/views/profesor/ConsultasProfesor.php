@@ -46,7 +46,8 @@ $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
                                 <td><?= $row['descripcionMateria'] ?></td>
                                 <td><?= $row['nombreCarrera'] ?></td>
                                 <td><?= $row['añoCursado'] ?></td>
-                                <td><a href="ConsultasModBloq.php?p=<?= $row['idProfesor'] ?>&m=<?= $row['idMateria'] ?>&c=<?= $row['idCarrera'] ?>">
+                                <td>
+                                    <a href="ConsultasModBloq.php?p=<?= $row['idProfesor'] ?>&m=<?= $row['idMateria'] ?>&c=<?= $row['idCarrera'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </a></td>
                             </tr>

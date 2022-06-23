@@ -7,6 +7,12 @@ Security::verifyUserIsProfessor();
 $consultaRepository = new ConsultaRepository();
 $result = $consultaRepository->getConsultaById($_GET['id'])->fetch_array();
 
+// Si un profesor quiere editar una consulta que no es suya, no se le permite entrar
+if(!($_SESSION['id'] == $result['idProfesor'])){
+    header("Location: " . REDIR_VIEWS . "/profesor/ConsultasProfesor.php");
+    exit;
+}
+
 include(DIR_HEADER);
 ?>
 

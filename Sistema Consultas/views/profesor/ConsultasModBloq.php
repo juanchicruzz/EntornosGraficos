@@ -11,13 +11,22 @@ $profesor = $_GET['p'];
 $materia = $_GET['m'];
 $carrera = $_GET['c'];
 
+// Si un profesor quiere editar una consulta que no es suya, no se le permite entrar
+if(!($_SESSION['id'] == $profesor)){
+    header("Location: " . REDIR_VIEWS . "/profesor/ConsultasProfesor.php");
+    exit;
+}
+
 $consultas = $consultaRepository->getConsultasByPrimaryKey($profesor, $materia, $carrera);
+
+// Si un profesor quiere acceder a una terna que no existe se redirige
+if($consultas -> num_rows == 0){
+    header("Location: " . REDIR_VIEWS . "/profesor/ConsultasProfesor.php");
+    exit;
+}
 $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia, $carrera)->fetch_array();
 
 ?>
-
-
-
 
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaInscripcion.js"></script>
 <script>
