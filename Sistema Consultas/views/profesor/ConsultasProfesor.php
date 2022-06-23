@@ -24,6 +24,11 @@ Conflicts
 
 $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
 
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
 
 ?>
 
