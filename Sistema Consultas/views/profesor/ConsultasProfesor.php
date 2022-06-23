@@ -10,19 +10,13 @@ $consultaRepository = new ConsultaRepository();
 
 
 
-$agregandoCosas  = "asd";
+$agregandoCosas  = "ACCIARRI";
 
 
-/*
-
-Comentario
-
-
-Conflicts 
-*/
 
 
 $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+
 
 ?>
 
