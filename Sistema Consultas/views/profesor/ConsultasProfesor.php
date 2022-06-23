@@ -10,6 +10,12 @@ $consultaRepository = new ConsultaRepository();
 
 $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
 
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+$consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+
 ?>
 
 <script type="text/javascript" charset="utf8" src="../tablas/crearTablaConsultasProfesor.js"></script>
