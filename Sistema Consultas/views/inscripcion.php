@@ -57,9 +57,9 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                 <?php if($row['estado'] == "Bloqueada"){
                                     echo '<td align="center"><a role="link" aria-disabled="true"><i class="fas fa-user-check" style="color:grey;"></i></a></td>';
                                 }else{
-                                    echo '<td align="center" ><a href="inscripcion.php?p=<?=$profesor?>&m=<?=$materia?>&c=<?=$carrera?>">
-                                        <i class="fas fa-user-check"></i>
-                                    </a></td>';
+                                    echo '<td align="center" ><a href="inscripcion.php?p='. 
+                                        $profesor . '&m='.$materia.'&c='.$carrera.'">
+                                        <i class="fas fa-user-check"></i> </a></td>';
                                 } ?>
                             </tr>
                     <?php }
