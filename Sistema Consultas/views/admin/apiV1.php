@@ -1,10 +1,13 @@
-<?php include("../partials/header.php"); ?>
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 
-<?php
-require_once("../db/repositories/rolesRepository.php");
-require_once("../db/repositories/usersRepository.php");
-require_once("../db/repositories/materiasRepository.php");
+require_once(DIR_SECURITY);
 Security::verifyUserIsAdmin();
+
+require_once(DIR_REPOSITORIES . "/rolesRepository.php");
+require_once(DIR_REPOSITORIES . "/usersRepository.php");
+require_once(DIR_REPOSITORIES . "/materiasRepository.php");
+
 
 ?>
 <?php
@@ -14,6 +17,8 @@ $MateriaRepo = new MateriaRepository();
 $users = $UserRepo->getAllUsers();
 $roles = $RoleRepo->getAllRoles();
 $materias = $MateriaRepo->getAllMaterias();
+
+require_once(DIR_HEADER);
 ?>
 
 <div class="container p-4">
@@ -86,4 +91,4 @@ $materias = $MateriaRepo->getAllMaterias();
 </div>
 </div>
 
-<?php include("../partials/footer.php"); ?>
+<?php include(DIR_FOOTER); ?>

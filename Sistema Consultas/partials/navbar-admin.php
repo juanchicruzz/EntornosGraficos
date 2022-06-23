@@ -14,6 +14,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
           <li><a href="<?=REDIR_VIEWS?>/consultas.php" class="nav-link px-2 link-light">Consultas</a></li>
           <li><a href="<?=REDIR_VIEWS?>/admin/users.php" class="nav-link px-2 link-light">ABM Alumnos</a></li>
           <li><a href="<?=REDIR_VIEWS?>/admin/validacionDocente.php" class="nav-link px-2 link-light">Validacion Docentes</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/admin/apiV1.php" class="nav-link px-2 link-light">API V1.0</a></li>
         </ul>
 
         <div class="dropdown text-end">

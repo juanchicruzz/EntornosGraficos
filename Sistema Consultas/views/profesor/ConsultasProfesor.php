@@ -7,18 +7,7 @@ include(DIR_HEADER);
 require_once(DIR_REPOSITORIES . "/consultasRepository.php");
 $consultaRepository = new ConsultaRepository();
 
-
-
-
-
-$agregandoCosas  = "ORTEGA";
-
-
-
-
-
 $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
-
 
 ?>
 
@@ -31,10 +20,8 @@ $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
     <div class="row">
         <h1>Horarios de Consulta</h1>
     </div>
-    <br>
+    <br><br><br>
 
-
-    <br><br>
     <div class="row">
         <div class="col-md-12">
             <table id="tablaConsultasProfesor" class="display table table-striped table-hover" id="table_id">

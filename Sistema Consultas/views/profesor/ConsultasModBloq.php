@@ -34,7 +34,20 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
         </div>
     </div>
     <br><br>
-
+    <?php
+            if(isset($_SESSION['message'])){
+        ?>
+            <div class="alert alert-<?=$_SESSION['message_type']?>
+                alert-dismissible fade show" role="alert">
+                <?= $_SESSION['message'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                </button>
+            </div>    
+        <?php
+            unset($_SESSION['message']);
+            unset($_SESSION['message_type']);
+            }
+        ?>
     <div class="row">
         <div class="col-md-12">
             <table id="tablaInscripcion" class="display table table-striped table-hover" id="table_id">

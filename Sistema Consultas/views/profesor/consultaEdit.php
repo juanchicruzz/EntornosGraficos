@@ -33,9 +33,9 @@ include(DIR_HEADER);
                     </select>
                 </div>
                 <div class="form-group mb-3">URL
-                    <input type="text" id="urlInput" name="URL" class="form-control" placeholder="URL reunion virtual" value="<?= $result['URL'] ?>">
+                    <input type="text" id="urlInput" name="URL" class="form-control" placeholder="URL reunion virtual" value="<?=$result['URL']?>">
                 </div>
-                <input class="btn btn-success btn-block" type="submit" name="edit_consulta" value="Guardar Cambios">
+                <input class="btn btn-success btn-block" type="submit" id="editConsulta" name="edit_consulta" value="Guardar Cambios">
                 <input name="idConsulta" hidden value="<?= $_GET['id'] ?>">
 
             </div>
@@ -49,11 +49,12 @@ include(DIR_HEADER);
         var e = document.getElementById(select_val);
         var strUser = e.options[e.selectedIndex].value;
         if (strUser === "Virtual") {
+            document.getElementById(input_id).value = document.getElementById(input_id).defaultValue;
             document.getElementById(input_id).disabled = false;
             document.getElementById(input_id).required = true;
             
         } else {
-            document.getElementById(input_id).value = document.getElementById(input_id).defaultValue;
+            document.getElementById(input_id).value = "";
             document.getElementById(input_id).disabled = true;
             document.getElementById(input_id).required = false;
         }

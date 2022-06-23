@@ -13,16 +13,13 @@ if (isset($_GET["a"])) {
 if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
     $consultas = $consultaRepository->getConsultasGeneral();
 }
-
-
 ?>
 
-<script type="text/javascript" charset="utf8" src="tablas/crearTablaConsultas.js"></script>
-<script>
-    crearTabla()
-</script>
 
 <?php require_once(DIR_HEADER);?>
+
+<script type="text/javascript" charset="utf8" src="tablas/crearTablaConsultas.js"></script>
+<script> crearTabla() </script>
 
 <div class="container">
     <div class="row">
@@ -108,4 +105,4 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
 <br><br><br><br><br><br><br><br><br>
 
 
-<?php include("../partials/footer.php"); ?>
+<?php include(DIR_FOOTER); ?>
