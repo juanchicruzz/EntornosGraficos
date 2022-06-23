@@ -10,19 +10,15 @@ $consultaRepository = new ConsultaRepository();
 
 
 
+
 $agregandoCosas  = "ORTEGA";
 
 
-/*
 
-Comentario
-
-
-Conflicts 
-*/
 
 
 $consultas = $consultaRepository->getConsultasByProfesor($_SESSION["id"]);
+
 
 ?>
 
