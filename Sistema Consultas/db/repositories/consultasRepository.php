@@ -58,8 +58,7 @@ class ConsultaRepository extends Repository{
     }
 
     function getConsultasByPrimaryKey($idProfesor, $idMateria, $idCarrera){
-        $query = "SELECT c.fecha, c.estado, c.modalidad, 
-
+        $query = "SELECT c.idConsulta, c.fecha, c.estado, c.modalidad, 
         ifNull(c.ubicacion, 'No definido') as ubicacion, 
         ifNull(c.horarioAlternativo, pm.horarioFijo) as horario, c.idConsulta
         FROM consultas c
@@ -69,6 +68,14 @@ class ConsultaRepository extends Repository{
       
         return $this->getResults($query);
     }
+    function getIdConsultaFromPKandFecha($idProfesor, $idMateria, $idCarrera, $fecha){
+        $query = "SELECT idConsulta FROM consultas c 
+        WHERE c.idCarrera = $idCarrera AND c.idProfesor = $idProfesor 
+        AND c.idMateria = $idMateria AND c.fecha = '$fecha';";
+      
+        return $this->getResults($query);
+    }
+    
 
     function getConsultasByProfesor($idProfesor){
         $query = "SELECT pm.dia, pm.horarioFijo ,m.descripcionMateria, car.nombreCarrera , pm.idMateria, m.añoCursado, pm.idCarrera, pm.idProfesor

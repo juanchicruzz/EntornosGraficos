@@ -15,10 +15,25 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
 
 ?>
 
+
+
+
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaInscripcion.js"></script>
 <script>
     crearTabla()
 </script>
+
+<SCRIPT>
+    var exampleModal = document.getElementById('inscribirModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+    // Button that triggered the modal
+    var button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    var idconsulta = button.getAttribute('data-bs-whatever')
+    console.log(idconsulta)
+    exampleModal.querySelector('#idConsulta').value = idconsulta;
+})
+</SCRIPT>
 
 <div class="container">
     <div class="row">
@@ -61,7 +76,7 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                     echo '<td align="center"><a role="link" aria-disabled="true"><i class="fas fa-user-check" style="color:grey;"></i></a></td>';
                                 } else { ?>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscribirModal" data-bs-whatever="@mdo">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscribirModal" data-bs-whatever="<?=$row['idConsulta']?>">
                                             <i class="fas fa-user-check"></i>
                                         </button>
 
@@ -73,18 +88,23 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="POST" action="<?= REDIR_CONTROLLERS ?>/inscripciones/generarInscripcion.php?p=<?= $profesor ?>&m=<?= $materia ?>&c=<?= $carrera ?>">
+                                                        <form method="POST" action="<?= REDIR_CONTROLLERS ?>/inscripciones/generarInscripcion.php">
                                                             <div class="mb-3">
+                                                                <input id="idConsulta" readonly></p>
                                                                 <p><strong><?=Utils::convertirFechaFromSQL($row['fecha'])?></strong></p>
                                                                 <p><strong> Modalidad: </strong><?=$row['modalidad']?> - <?=$row['horario']?> hs.</p>
                                                                 <?php if($row['ubicacion'] != 'No definido') echo "<p><strong>Ubicacion: </strong>".$row['ubicacion']."</p>" ?>
                                                                 <label for="motivoConsulta" class="col-form-label">Motivo de consulta:</label>
-                                                                <textarea class="form-control" name="motivoConsulta" id="motivoConsulta" style="resize:none" rows="3"></textarea>
+                                                                <textarea class="form-control" name="motivo" id="motivoConsulta" style="resize:none" rows="3"></textarea>
+                                                                <input type="hidden" name="p" value=<?=$profesor?>>
+                                                                <input type="hidden" name="m" value=<?=$materia?>>
+                                                                <input type="hidden" name="c" value=<?=$carrera?>>
+                                                                <input type="hidden" name="f" value=<?=$row['fecha']?>>
                                                             </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                        <button type="submit" class="btn btn-primary">Inscribirse</button>
+                                                        <button type="submit" class="btn btn-primary" name="inscribir_btn">Inscribirse</button>
                                                     </div>
                                                     </form>
 
