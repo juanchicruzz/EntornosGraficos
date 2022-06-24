@@ -55,7 +55,7 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                 <td><?=Utils::convertirFechaFromSQL($row['fecha']) ?></td>
                                 <td><?=$row['estado'] ?></td>
                                 <td><?=$row['modalidad'] ?></td>
-                                <td><?=$row['url'] ?></td>
+                                <td><?=$row['ubicacion'] ?></td>
                                 <td><?=$row['horario'] ?></td>
                                 <?php if ($row['estado'] == "Bloqueada") {
                                     echo '<td align="center"><a role="link" aria-disabled="true"><i class="fas fa-user-check" style="color:grey;"></i></a></td>';
@@ -77,7 +77,7 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                                             <div class="mb-3">
                                                                 <p><strong><?=Utils::convertirFechaFromSQL($row['fecha'])?></strong></p>
                                                                 <p><strong> Modalidad: </strong><?=$row['modalidad']?> - <?=$row['horario']?> hs.</p>
-                                                                <?php if($row['url'] != 'No aplica') echo "<p><strong>Ubicacion: </strong>".$row['url']."</p>" ?>
+                                                                <?php if($row['ubicacion'] != 'No definido') echo "<p><strong>Ubicacion: </strong>".$row['ubicacion']."</p>" ?>
                                                                 <label for="motivoConsulta" class="col-form-label">Motivo de consulta:</label>
                                                                 <textarea class="form-control" name="motivoConsulta" id="motivoConsulta" style="resize:none" rows="3"></textarea>
                                                             </div>
