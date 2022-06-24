@@ -59,10 +59,12 @@ class ConsultaRepository extends Repository{
 
     function getConsultasByPrimaryKey($profesor, $materia, $carrera){
         $query = "SELECT c.fecha, c.estado, c.modalidad, 
-        ifNull(c.URL, 'No aplica') as url, 
-        ifNull(c.horarioAlternativo, 'No aplica') as horarioAlternativo, c.idConsulta
+        ifNull(c.ubicacion, 'No definido') as ubicacion, 
+        ifNull(c.horarioAlternativo, pm.horarioFijo) as horario, c.idConsulta
         FROM consultas c
-        WHERE idCarrera = $carrera AND idProfesor = $profesor AND idMateria = $materia;";
+        INNER JOIN profesor_materia pm 
+			ON c.idCarrera = pm.idCarrera AND c.idProfesor = pm.idProfesor AND c.idMateria = pm.idMateria
+        WHERE c.idCarrera = $carrera AND c.idProfesor = $profesor AND c.idMateria = $materia;";
         return $this->getResults($query);
     }
 
@@ -93,13 +95,13 @@ class ConsultaRepository extends Repository{
         return $this->getResults($query);
     }
 
-    function updateConsulta($modalidad, $horarioAlt,  $URL, $idConsulta){
+    function updateConsulta($modalidad, $horarioAlt,  $ubicacion, $idConsulta){
         $query = 'UPDATE '.self::ENTITY.' SET '
-            .' modalidad=?, horarioAlternativo=?, URL=?'
+            .' modalidad=?, horarioAlternativo=?, ubicacion=?'
             .' WHERE '.self::IDENTIFIER. '=?'; 
         return $this->executeQuery(
             $query, 
-            [$modalidad, $horarioAlt,  $URL, $idConsulta]);
+            [$modalidad, $horarioAlt,  $ubicacion, $idConsulta]);
     }
 }
 

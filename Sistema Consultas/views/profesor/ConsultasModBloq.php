@@ -65,8 +65,8 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                         <th scope="col">Fecha</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Modalidad</th>
-                        <th scope="col">URL</th>
-                        <th scope="col">Horario Alternativo</th>
+                        <th scope="col">Ubicacion</th>
+                        <th scope="col">Horario</th>
                         <th scope="col">Modificar</th>
                         <th scope="col">Bloquear</th>
                     </tr>
@@ -82,8 +82,8 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                 <td><?= Utils::convertirFechaFromSQL($row['fecha']) ?></td>
                                 <td><?= $row['estado'] ?></td>
                                 <td><?= $row['modalidad'] ?></td>
-                                <td><?= $row['url'] ?></td>
-                                <td><?= $row['horarioAlternativo'] ?></td>
+                                <td><?= $row['ubicacion'] ?></td>
+                                <td><?= $row['horario'] ?></td>
                                 <td><a href="consultaEdit.php?id=<?= $row['idConsulta'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </a></td>
