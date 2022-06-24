@@ -29,6 +29,61 @@ class ConsultaRepository extends Repository{
         return $this->getResults($query);
     }
 
+    function getConsultasBloqueadas(){
+        $query = "SELECT pm.dia, pm.horarioFijo, concat(u.nombre, ' ', u.apellido) as 'profesor', 
+        m.descripcionMateria, car.nombreCarrera , pm.idProfesor, pm.idMateria, pm.idCarrera, con.fecha,
+        con.modalidad, con.motivoCancelacion
+		FROM profesor_materia pm 
+        INNER JOIN usuarios u 
+            ON pm.idProfesor = u.idUsuario
+        INNER JOIN materias m 
+            ON pm.idMateria = m.idMateria
+        INNER JOIN carreras car 
+            ON pm.idCarrera = car.idCarrera
+        INNER JOIN consultas con
+            ON con.idProfesor = pm.idProfesor AND con.idMateria = pm.idMateria AND con.idCarrera = pm.idCarrera
+        WHERE estado = 'Bloqueada'
+        ORDER BY car.nombreCarrera DESC";
+        return $this->getResults($query);
+    }
+
+    function getConsultasPorDia($fecha){
+        $query = "SELECT pm.dia, pm.horarioFijo, concat(u.nombre, ' ', u.apellido) as 'profesor', 
+        m.descripcionMateria, car.nombreCarrera , pm.idProfesor, pm.idMateria, pm.idCarrera, con.fecha,
+        con.modalidad, con.motivoCancelacion
+		FROM profesor_materia pm 
+        INNER JOIN usuarios u 
+            ON pm.idProfesor = u.idUsuario
+        INNER JOIN materias m 
+            ON pm.idMateria = m.idMateria
+        INNER JOIN carreras car 
+            ON pm.idCarrera = car.idCarrera
+        INNER JOIN consultas con
+            ON con.idProfesor = pm.idProfesor AND con.idMateria = pm.idMateria AND con.idCarrera = pm.idCarrera
+        WHERE con.fecha = '$fecha'
+        ORDER BY car.nombreCarrera DESC";
+        return $this->getResults($query);
+    }
+
+    function getAllConsultas(){
+        $query = "SELECT pm.dia, pm.horarioFijo, concat(u.nombre, ' ', u.apellido) as 'profesor', 
+        m.descripcionMateria, car.nombreCarrera , pm.idProfesor, pm.idMateria, pm.idCarrera, con.fecha,
+        con.modalidad, con.motivoCancelacion
+		FROM profesor_materia pm 
+        INNER JOIN usuarios u 
+            ON pm.idProfesor = u.idUsuario
+        INNER JOIN materias m 
+            ON pm.idMateria = m.idMateria
+        INNER JOIN carreras car 
+            ON pm.idCarrera = car.idCarrera
+        INNER JOIN consultas con
+            ON con.idProfesor = pm.idProfesor AND con.idMateria = pm.idMateria AND con.idCarrera = pm.idCarrera
+        ORDER BY car.nombreCarrera DESC";
+        return $this->getResults($query);
+    }
+
+
+
     function getConsultasByCarrera($idCarrera){
         $query = "SELECT pm.dia, pm.horarioFijo, concat(u.nombre, ' ', u.apellido) as 'profesor', 
         m.descripcionMateria, car.nombreCarrera , pm.idProfesor, pm.idMateria, pm.idCarrera 
