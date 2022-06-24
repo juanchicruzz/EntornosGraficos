@@ -57,12 +57,15 @@ class ConsultaRepository extends Repository{
         return $this->getResults($query);
     }
 
-    function getConsultasByPrimaryKey($profesor, $materia, $carrera){
+    function getConsultasByPrimaryKey($idProfesor, $idMateria, $idCarrera){
         $query = "SELECT c.fecha, c.estado, c.modalidad, 
         ifNull(c.URL, 'No aplica') as url, 
-        ifNull(c.horarioAlternativo, 'No aplica') as horarioAlternativo, c.idConsulta
+        ifNull(c.horarioAlternativo, pm.horarioFijo) as horario, c.idConsulta
         FROM consultas c
-        WHERE idCarrera = $carrera AND idProfesor = $profesor AND idMateria = $materia;";
+        INNER JOIN profesor_materia pm 
+			ON c.idCarrera = pm.idCarrera AND c.idProfesor = pm.idProfesor AND c.idMateria = pm.idMateria
+        WHERE c.idCarrera = $idCarrera AND c.idProfesor = $idProfesor AND c.idMateria = $idMateria;";
+ 
         return $this->getResults($query);
     }
 

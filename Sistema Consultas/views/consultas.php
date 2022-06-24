@@ -89,7 +89,7 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
                                 <td><?= $row['profesor'] ?></td>
                                 <td><?= $row['descripcionMateria'] ?></td>
                                 <td><?= $row['nombreCarrera'] ?></td>
-                                <td><a href="inscripcion.php?p=<?= $row['idProfesor'] ?>&m=<?= $row['idMateria'] ?>&c=<?= $row['idCarrera'] ?>">
+                                <td><a href="<?=REDIR_VIEWS?>/alumno/inscripcion.php?p=<?= $row['idProfesor'] ?>&m=<?= $row['idMateria'] ?>&c=<?= $row['idCarrera'] ?>">
                                         <i class="fas fa-user-check"></i>
                                     </a></td>
                             </tr>

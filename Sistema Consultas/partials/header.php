@@ -19,7 +19,7 @@
 </head>
 
 <?php
-  include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
+  require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
     switch($_SESSION["userType"]){
       case "1": {
