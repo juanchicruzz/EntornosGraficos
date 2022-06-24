@@ -29,7 +29,7 @@ include(DIR_HEADER);
                     <input type="time" name="horarioAlternativo" class="form-control" placeholder="Hora Alternativo" autofocus value="<?= $result['horarioAlternativo'] ?>">
                 </div>
                 <div class="form-group mb-3">Modalidad
-                    <select name="modalidad" class="form-control" id="modalidadSelect" onchange="disable('modalidadSelect','urlInput')">
+                    <select name="modalidad" class="form-control" id="modalidadSelect" onchange="placeholder()">
                         <option <?php if ($result['modalidad'] == "Presencial") {
                                     echo "Selected";
                                 } ?> value="Presencial">Presencial</option>
@@ -38,8 +38,8 @@ include(DIR_HEADER);
                                 } ?> value="Virtual">Virtual</option>
                     </select>
                 </div>
-                <div class="form-group mb-3">URL
-                    <input type="text" id="urlInput" name="URL" class="form-control" placeholder="URL reunion virtual" value="<?=$result['URL']?>">
+                <div class="form-group mb-3">Ubicacion
+                    <input type="text" id="ubicacionInput" name="ubicacion" class="form-control" value="<?=$result['ubicacion']?>">
                 </div>
                 <input class="btn btn-success btn-block" type="submit" id="editConsulta" name="edit_consulta" value="Guardar Cambios">
                 <input name="idConsulta" hidden value="<?= $_GET['id'] ?>">
@@ -51,6 +51,13 @@ include(DIR_HEADER);
 
 
 <script>
+    function placeholder(){
+        var modalidad = document.getElementById("modalidadSelect").value;
+        document.getElementById("ubicacionInput").value = "";
+        document.getElementById("ubicacionInput").placeholder = 
+            modalidad == "Presencial" ? "Aula" : "URL de Reunion";
+    }
+    /*
     function disable(select_val, input_id) {
         var e = document.getElementById(select_val);
         var strUser = e.options[e.selectedIndex].value;
@@ -68,5 +75,6 @@ include(DIR_HEADER);
     window.onload = function() {
         disable('modalidadSelect', 'urlInput');
     };
+    */
 </script>
 <?php include(DIR_FOOTER); ?>
