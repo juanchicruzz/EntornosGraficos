@@ -31,7 +31,7 @@ include(DIR_HEADER);
         <div class="row justify-content-center">
             <div class="col-md-6 border p-3  bg-light ">
                 <div class="form-group mb-3">Motivo de Bloqueo
-                    <input type="text" name="motivo" class="form-control" placeholder="Motivo de bloqueo" autofocus>
+                    <input required type="text" name="motivo" class="form-control" placeholder="Motivo de bloqueo" autofocus>
                 </div>
 
                 <input class="btn btn-danger btn-block" type="submit" id="bloqConsulta" name="bloq_consulta" value="Bloquear Consulta">

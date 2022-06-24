@@ -2,18 +2,22 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 require_once(DIR_REPOSITORIES . "/consultasRepository.php");
 
-    if(isset($_POST['bloq_consulta'])){
+    if(isset($_GET['id'])){
         $ConsultaRepository = new ConsultaRepository();
-        $motivo = strval($_POST['motivo']);
-        $idConsulta = $_POST['idConsulta'];
+        $idConsulta = $_GET['id'];
         $consulta = $ConsultaRepository->getConsultaById($idConsulta)->fetch_array();
+
+        if(!($_SESSION['id'] == $consulta['idProfesor'])){
+            header("Location: " . REDIR_VIEWS . "/profesor/ConsultasProfesor.php");
+            exit;
+        }
       
-        $result_query = $ConsultaRepository->bloquearConsulta($motivo,$idConsulta); 
+        $result_query = $ConsultaRepository->DesbloquearConsulta($idConsulta); 
         if(!$result_query){
             die("Update query failed");
         }
-        $_SESSION['message'] = "Consulta bloqueda exitosamente";
-        $_SESSION['message_type'] = "danger";
+        $_SESSION['message'] = "Consulta Desbloqueada exitosamente";
+        $_SESSION['message_type'] = "success";
         header("Location: " . REDIR_VIEWS . "/profesor/ConsultasModBloq.php?p=".$consulta['idProfesor']."&m=".$consulta['idMateria']."&c=".$consulta['idCarrera']);
         exit;
     }

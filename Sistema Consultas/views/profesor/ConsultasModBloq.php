@@ -68,7 +68,7 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                         <th scope="col">URL</th>
                         <th scope="col">Horario Alternativo</th>
                         <th scope="col">Modificar</th>
-                        <th scope="col">Bloquear</th>
+                        <th scope="col">Bloquear/Desbloquear</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,7 +88,7 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                         <i class="fas fa-edit"></i>
                                     </a></td>
                                 <?php if($row['estado'] == "Bloqueada"){
-                                    echo '<td><a href="DesbloquearBloquear.php?id='. $row["idConsulta"] .' "><i class="fa-solid fa-unlock" style="color:red;"></i></a></td>';
+                                    echo '<td><a href="'.REDIR_CONTROLLERS.'/profesor/desbloqConsulta.php?id='. $row["idConsulta"] .' "><i class="fa-solid fa-unlock" style="color:green;"></i></a></td>';
                                 }else{
                                     echo '<td><a href="ConsultaBloquear.php?id='. $row["idConsulta"] .' "><i class="fa-solid fa-lock" style="color:red;"></i></a></td>';
                                 } ?>

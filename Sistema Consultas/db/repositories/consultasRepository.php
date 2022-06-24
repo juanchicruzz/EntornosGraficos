@@ -111,6 +111,15 @@ class ConsultaRepository extends Repository{
             $query, 
             ['Bloqueada',$motivo,$idConsulta]);
     }
+
+    function desbloquearConsulta($idConsulta){
+        $query = 'UPDATE '.self::ENTITY.' SET '
+            .' estado=?, motivoCancelacion=?'
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            ['Activa',Null,$idConsulta]);
+    }
 }
 
 ?>
