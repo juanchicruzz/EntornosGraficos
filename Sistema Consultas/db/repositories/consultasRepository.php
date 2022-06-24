@@ -101,6 +101,16 @@ class ConsultaRepository extends Repository{
             $query, 
             [$modalidad, $horarioAlt,  $URL, $idConsulta]);
     }
+
+    function bloquearConsulta($motivo,$idConsulta){
+        $query = 'UPDATE '.self::ENTITY.' SET '
+            .' estado=?,'
+            .' motivoCancelacion=?'
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            ['Bloqueada',$motivo,$idConsulta]);
+    }
 }
 
 ?>

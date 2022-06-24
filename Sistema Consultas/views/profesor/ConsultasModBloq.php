@@ -87,9 +87,11 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                 <td><a href="consultaEdit.php?id=<?= $row['idConsulta'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </a></td>
-                                <td><a href="bloquearConsulta.php?p=<?= $profesor ?>&m=<?= $materia ?>&c=<?= $carrera ?>">
-                                        <i class="fa-solid fa-lock" style="color:red;"></i>
-                                    </a></td>
+                                <?php if($row['estado'] == "Bloqueada"){
+                                    echo '<td><a href="DesbloquearBloquear.php?id='. $row["idConsulta"] .' "><i class="fa-solid fa-unlock" style="color:red;"></i></a></td>';
+                                }else{
+                                    echo '<td><a href="ConsultaBloquear.php?id='. $row["idConsulta"] .' "><i class="fa-solid fa-lock" style="color:red;"></i></a></td>';
+                                } ?>
                             </tr>
                     <?php }
                     } ?>
