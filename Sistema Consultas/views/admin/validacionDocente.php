@@ -38,7 +38,6 @@ include(DIR_HEADER)
                <th scope="col">Email</th>
                <th scope="col">Legajo</th>
                <th scope="col">Validar</th>
-               <th scope="col">Eliminar Docente</th>
            </thead>
            <tbody>
             <?php
@@ -52,14 +51,30 @@ include(DIR_HEADER)
                     <td><?=$row['email']?></td>
                     <td><?=$row['legajo']?></td>
                     <td align="center">
-                        <a href="<?=REDIR_CONTROLLERS?>/users/validateUser.php?id=<?=$row['idUsuario']?>" class="btn">
-                            <i class="fa fa-check"></i> 
-                        </a>
-                    <td align="center">
-
-                        <a href="<?=REDIR_CONTROLLERS?>/users/deleteUser.php?id=<?=$row['idUsuario']?>" class="btn btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ValidarDocente" data-bs-whatever="@mdo">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <div class="modal fade" id="ValidarDocente" tabindex="-1" aria-labelledby="ValidarDocente" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="<?=REDIR_CONTROLLERS?>/users/validateUser.php?id=<?=$row['idUsuario']?>">
+                                            <div class="mb-3">
+                                                <p><strong> Esta seguro que desea validar a: </strong><?=$row['email']?></p>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Validar</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             <?php
