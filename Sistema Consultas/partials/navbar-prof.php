@@ -13,7 +13,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
           <li><a href="<?=REDIR_VIEWS?>/index.php" class="nav-link px-2 link-light">Inicio</a></li>
           <li><a href="<?=REDIR_VIEWS?>/consultas.php" class="nav-link px-2 link-light">Consultas</a></li>
           <li><a href="<?=REDIR_VIEWS?>/Profesor/ConsultasProfesor.php" class="nav-link px-2 link-light">Mis consultas</a></li>
-          <li><a href="<?=REDIR_VIEWS?>/admin/validacionDocente.php" class="nav-link px-2 link-light">Bloquear Consulta</a></li>
+          <li><a href="<?=REDIR_VIEWS?>/Profesor/ConsultaBloquearSemana.php" class="nav-link px-2 link-light">Bloquear Consulta</a></li>
         </ul>
 
         <div class="dropdown text-end">
