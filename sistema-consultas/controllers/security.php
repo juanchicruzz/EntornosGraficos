@@ -32,7 +32,7 @@ Class Security {
         }
         if(isset($_SESSION['userType']) && $_SESSION['userType'] != self::ADMIN_TYPE)
         {
-            header("Location: " . REDIR_VIEWS . "/index.php");
+            header("Location: " . REDIR_INDEX);
             exit;
         }
     }
@@ -45,7 +45,7 @@ Class Security {
         }
         if(isset($_SESSION['userType']) && $_SESSION['userType'] != self::PROF_TYPE)
         {
-            header("Location: " . REDIR_VIEWS . "/index.php");
+            header("Location: " . REDIR_INDEX);
             exit;
         }
     }

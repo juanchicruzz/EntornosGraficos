@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: " . REDIR_VIEWS . "/index.php");
+    header("Location: " . REDIR_INDEX);
     exit;
 }
 
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["id"] = $row["idUsuario"];
                     $_SESSION["email"] = $row["email"];
                     $_SESSION["userType"] = $row["idRolUsuario"];
-                    header("Location: " . REDIR_VIEWS . "/index.php");
+                    header("Location: " . REDIR_INDEX);
                     exit;
                 }
             } else {
