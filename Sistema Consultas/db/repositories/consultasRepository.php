@@ -125,6 +125,25 @@ class ConsultaRepository extends Repository{
         return $this->getResults($query);
     }
 
+    function getConsultasBloqueadasByProfesor($idProfesor){
+        $query = "SELECT c.fecha, c.estado, c.modalidad, 
+        ifNull(c.URL, 'No aplica') as url, 
+        ifNull(c.horarioAlternativo, 'No aplica') as horarioAlternativo, c.idConsulta
+        FROM consultas c
+        WHERE idProfesor = $idProfesor AND estado = 'Bloqueada';";
+        return $this->getResults($query);
+    }
+
+    function getConsultasActivasByProfesor($idProfesor){
+        $query = "SELECT c.fecha, c.estado, c.modalidad, 
+        ifNull(c.URL, 'No aplica') as url, 
+        ifNull(c.horarioAlternativo, 'No aplica') as horarioAlternativo, c.idConsulta
+        FROM consultas c
+        WHERE idProfesor = $idProfesor AND estado <> 'Bloqueada';";
+        return $this->getResults($query);
+    }
+
+
     function getConsultasByProfesor($idProfesor){
         $query = "SELECT pm.dia, pm.horarioFijo ,m.descripcionMateria, car.nombreCarrera , pm.idMateria, m.añoCursado, pm.idCarrera, pm.idProfesor
         FROM profesor_materia pm
@@ -159,6 +178,52 @@ class ConsultaRepository extends Repository{
         return $this->executeQuery(
             $query, 
             [$modalidad, $horarioAlt,  $ubicacion, $idConsulta]);
+    }
+
+    function bloquearConsulta($motivo,$idConsulta){
+        $query = 'UPDATE '.self::ENTITY.' SET '
+            .' estado=?,'
+            .' motivoCancelacion=?'
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            ['Bloqueada',$motivo,$idConsulta]);
+    }
+
+    function desbloquearConsulta($idConsulta){
+        $query = 'UPDATE '.self::ENTITY.' SET '
+            .' estado=?, motivoCancelacion=?'
+            .' WHERE '.self::IDENTIFIER. '=?'; 
+        return $this->executeQuery(
+            $query, 
+            ['Activa',Null,$idConsulta]);
+    }
+
+    function getConsultasByDates($estado,$idProfesor,$fechaInicio, $fechaFin){
+        $query = "SELECT c.idConsulta 
+        FROM consultas c 
+        WHERE c.idProfesor ='$idProfesor' AND c.estado = '$estado' AND c.fecha BETWEEN '$fechaInicio' AND '$fechaFin'";
+        return $this->getResults($query);
+    }
+
+    function bloqConsultasByDates($motivo,$idProfesor,$fechaInicio, $fechaFin){
+        $query = "UPDATE ".self::ENTITY." SET estado='Bloqueada' , motivoCancelacion=? ".
+         "WHERE idProfesor=? AND ". 
+         "fecha BETWEEN ? AND ? ";
+        return $this->executeQuery(
+            $query,
+            [$motivo,$idProfesor,$fechaInicio,$fechaFin]
+        );
+    }
+
+    function desbloqConsultasByDate($idProfesor,$fechaInicio, $fechaFin){
+        $query = "UPDATE ".self::ENTITY." SET estado='Activa' , motivoCancelacion=NULL ".
+         "WHERE idProfesor=? AND ". 
+         "fecha BETWEEN ? AND ? ";
+        return $this->executeQuery(
+            $query,
+            [$idProfesor,$fechaInicio,$fechaFin]
+        );
     }
 }
 

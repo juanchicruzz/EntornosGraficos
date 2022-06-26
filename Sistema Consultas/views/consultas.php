@@ -2,6 +2,7 @@
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . "/sistema-consultas/directories.php");
 require_once(DIR_REPOSITORIES . "/consultasRepository.php");
+
 $consultaRepository = new ConsultaRepository();
 
 if (isset($_GET["carrera"])) {
