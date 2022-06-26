@@ -9,6 +9,14 @@ class InscripcionRepository extends Repository{
         return $this->getAll(self::ENTITY);
     }
 
+    function getInscripcionByConsultaAndAlumno($idConsulta, $idAlumno){
+        $query = "
+            SELECT * FROM ".self::ENTITY
+            ." WHERE idAlumno = '".$idAlumno."' 
+            AND idConsulta = '".$idConsulta."';" ;
+        return $this->getResults($query);
+    }
+
     function getInscripcionesByAlumno($idAlumno){
         $query = "
             SELECT * FROM ".self::ENTITY

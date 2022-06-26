@@ -18,22 +18,10 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
 
 
 
-<script type="text/javascript" charset="utf8" src="tablas/crearTablaInscripcion.js"></script>
+<script type="text/javascript" charset="utf8" src="../tablas/crearTablaInscripcion.js"></script>
 <script>
     crearTabla()
 </script>
-
-<SCRIPT>
-    var exampleModal = document.getElementById('inscribirModal')
-    exampleModal.addEventListener('show.bs.modal', function (event) {
-    // Button that triggered the modal
-    var button = event.relatedTarget
-    // Extract info from data-bs-* attributes
-    var idconsulta = button.getAttribute('data-bs-whatever')
-    console.log(idconsulta)
-    exampleModal.querySelector('#idConsulta').value = idconsulta;
-})
-</SCRIPT>
 
 <div class="container">
     <div class="row">
@@ -76,7 +64,9 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                     echo '<td align="center"><a role="link" aria-disabled="true"><i class="fas fa-user-check" style="color:grey;"></i></a></td>';
                                 } else { ?>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscribirModal" data-bs-whatever="<?=$row['idConsulta']?>">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscribirModal" 
+                                        data-bs-fecha="<?=Utils::convertirFechaFromSQL($row['fecha'])?>" data-bs-modalidad="<?=$row['modalidad']?>" 
+                                        data-bs-horario="<?=$row['horario']?>" data-bs-idconsulta="<?=$row['idConsulta']?>">
                                             <i class="fas fa-user-check"></i>
                                         </button>
 
@@ -90,16 +80,13 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                                     <div class="modal-body">
                                                         <form method="POST" action="<?= REDIR_CONTROLLERS ?>/inscripciones/generarInscripcion.php">
                                                             <div class="mb-3">
-                                                                <input id="idConsulta" readonly></p>
-                                                                <p><strong><?=Utils::convertirFechaFromSQL($row['fecha'])?></strong></p>
-                                                                <p><strong> Modalidad: </strong><?=$row['modalidad']?> - <?=$row['horario']?> hs.</p>
-                                                                <?php if($row['ubicacion'] != 'No definido') echo "<p><strong>Ubicacion: </strong>".$row['ubicacion']."</p>" ?>
+                                                            
+                                                                <p id="fechaModal" style="font-weight:bold;"></p>
+                                                                <p id="modalidadModal" style="font-weight:bold;"></p>
                                                                 <label for="motivoConsulta" class="col-form-label">Motivo de consulta:</label>
                                                                 <textarea class="form-control" name="motivo" id="motivoConsulta" style="resize:none" rows="3"></textarea>
-                                                                <input type="hidden" name="p" value=<?=$profesor?>>
-                                                                <input type="hidden" name="m" value=<?=$materia?>>
-                                                                <input type="hidden" name="c" value=<?=$carrera?>>
-                                                                <input type="hidden" name="f" value=<?=$row['fecha']?>>
+                                                            
+                                                                <input hidden id="idConsultaModal" name="idConsulta">
                                                             </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -126,5 +113,19 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
 
 <br><br><br><br><br><br><br><br><br>
 
+<SCRIPT>
+var inscribirModal = document.getElementById('inscribirModal');
+inscribirModal.addEventListener('show.bs.modal', function (event) {
+  var button = event.relatedTarget;
+  var fecha = button.getAttribute('data-bs-fecha');
+  var modalidad = button.getAttribute('data-bs-modalidad');
+  var horario = button.getAttribute('data-bs-horario');
+  var idConsulta = button.getAttribute('data-bs-idconsulta');
+  console.log(idConsulta);
+  inscribirModal.querySelector('#fechaModal').textContent = fecha;
+  inscribirModal.querySelector('#modalidadModal').textContent = modalidad + " - " + horario;
+  document.getElementById('idConsultaModal').value = idConsulta;
+  });
+</SCRIPT>
 
 <?php include(DIR_FOOTER); ?>
