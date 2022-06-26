@@ -27,6 +27,7 @@ include(DIR_HEADER)
             <h1>Listado de Consultas</h1>   
         </div>
         <br><br><br>
+
         
         <div class="row">
             <form method="GET" action = <?=htmlspecialchars($_SERVER['PHP_SELF'])?>>
@@ -39,15 +40,22 @@ include(DIR_HEADER)
                     </div>
                 <div>
         </form>
-        <br>
+        <br><br>
+        <?php
+            if (!(isset($_GET['fecha']))) {
+                echo "<h2>Listado de consultas</h2>";
+            }
+            else
+            {
+               echo "<h2>Listado de consultas para la fecha: " .$_GET['fecha']."</h2>";
+            }
+        ?>
         <div class="row">
             <div class="col-md-3">
                 <a class="btn btn-primary" href="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>?fecha="> Mostrar Todas </a>
             </div>
         </div>
-    
-        <br><br>
-        <h2>Listado de consultas para la fecha:  <?=$_GET['fecha']?></h2>   
+        <br>
        <table id= "tablaConsultas" class="display table table-striped table-hover">
            <thead class="thead-dark">
                <th scope="col">Profesor</th>

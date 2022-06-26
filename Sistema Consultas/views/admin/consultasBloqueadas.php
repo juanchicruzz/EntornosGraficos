@@ -16,9 +16,10 @@ include(DIR_HEADER)
 ?>
     <div class="container p-4">
         <div class="row bg-light border">
-            <h1>Consultas Bloqueada</h1>   
+            <h1>Listado de Consultas Bloqueadas</h1>   
         </div>
-        
+        <br>
+        <br>        
        <table id= "tablaConsultasBloqueadas" class="table table-bordered">
            <thead class="thead-dark">
                <th scope="col">Profesor</th>
