@@ -67,8 +67,8 @@ $inscripciones = $InscripcionRepository -> getInscripcionesByAlumno($_SESSION['i
                                 <td><?= $row['idConsulta'] ?></td>
                                 <td><?= $row['motivoConsulta'] ?></td>
                                 <td><?= $row['fechaInscripcion'] ?></td>
-                                <td><a href="#">
-                                        <i class="fas fa-trash"></i>
+                                <td><a href="#" class="">
+                                        <i class="fas fa-circle-minus" style="color:red;"></i>
                                     </a></td>
                             </tr>
                     <?php }
