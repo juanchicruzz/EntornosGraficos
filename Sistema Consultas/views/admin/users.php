@@ -62,9 +62,31 @@ include(DIR_HEADER)
                         <a href="editUser.php?id=<?=$row['idUsuario']?>" class="btn btn-warning">
                             <i class="fas fa-pen"></i>
                         </a>
-                        <a href="<?=REDIR_CONTROLLERS?>/users/deleteUser.php?id=<?=$row['idUsuario']?>" class="btn btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#EliminarUsrModal" data-bs-whatever="@mdo">
+                            <i class="fas fa-trash "></i>
+                        </button>
+                        <div class="modal fade" id="EliminarUsrModal" tabindex="-1" aria-labelledby="EliminarUsrModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="<?=REDIR_CONTROLLERS?>/users/deleteUser.php?id=<?=$row['idUsuario']?>">
+                                            <div class="mb-3">
+                                                <p><strong> Esta seguro que desea eliminar a: </strong><?=$row['email']?></p>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             <?php
