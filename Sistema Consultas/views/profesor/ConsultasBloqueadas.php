@@ -6,64 +6,61 @@ Security::verifyUserIsProfessor();
 include(DIR_HEADER);
 require_once(DIR_REPOSITORIES . "/consultasRepository.php");
 $consultaRepository = new ConsultaRepository();
+
 $profesor = $_SESSION['id'];
 
-$consultas = $consultaRepository->getConsultasActivasByProfesor($profesor);
+
+$consultas = $consultaRepository->getConsultasBloqueadasByProfesor($profesor);
+
 
 ?>
-
-
 
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaInscripcion.js"></script>
 <script>
     crearTabla()
 </script>
 
-<div class="container p-4">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1>Bloquear Consultas</h1>
+            <h1>Desbloquear Consultas</h1>
         </div>
-    </div>
-    <?php
-            if(isset($_SESSION['message'])){
+        <form action="<?= REDIR_CONTROLLERS . "/profesor/desbloqSemana.php" ?>" method="POST">
+            <div class="row justify-content-center">
+                <div class="col-md-6 border p-3  bg-light ">
+                    <div class="form-group mb-3">Fecha Inicio
+                        <input id="StartDate" name="StartDate" class="form-control" type="date" onchange="validaFecha('EndDate','StartDate')" />
+                    </div>
+                    <div class="form-group mb-3">Fecha Fin
+                        <input id="EndDate" name="EndDate" class="form-control" type="date" onchange="validaFecha('EndDate','StartDate')" />
+                    </div>
+                    <input class="btn btn-success btn-block" type="submit" id="desbloqSemanaConsulta" name="desbloqSemana_consulta" value="Desbloquear Consultas">
+                    <input name="idProfesor" hidden value="<?= $_SESSION['id'] ?>">
+
+                </div>
+            </div>
+        </form>
+
+        <?php
+        if (isset($_SESSION['message'])) {
         ?>
-            <div class="alert alert-<?=$_SESSION['message_type']?>
+            <div class="alert alert-<?= $_SESSION['message_type'] ?>
                 alert-dismissible fade show" role="alert">
                 <?= $_SESSION['message'] ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 </button>
-            </div>    
+            </div>
         <?php
             unset($_SESSION['message']);
             unset($_SESSION['message_type']);
-            }
+        }
         ?>
-    
-    <form action="<?= REDIR_CONTROLLERS . "/profesor/bloqSemana.php" ?>" method="POST">
         <div class="row justify-content-center">
-            <div class="col-md-6 border p-3  bg-light ">
-                <div class="form-group mb-3">Fecha Inicio
-                    <input id="StartDate" name="StartDate" class="form-control" type="date" onchange="validaFecha('EndDate','StartDate')" />
-                </div>
-                <div class="form-group mb-3">Fecha Fin
-                    <input id="EndDate" name="EndDate" class="form-control" type="date" onchange="validaFecha('EndDate','StartDate')" />
-                </div>
-                <div class="form-group mb-3">Motivo de Bloqueo
-                    <input required type="text" name="motivo" class="form-control" placeholder="Motivo de bloqueo" autofocus>
-                </div>
-                <input class="btn btn-danger btn-block" title="Bloquear Consultas" type="submit" id="bloqSemanaConsulta" name="bloqSemana_consulta" value="Bloquear Consultas">
-                <input name="idProfesor" hidden value="<?= $_SESSION['id'] ?>">
-
-            </div>
-        </div>
-    </form>
-    <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1>Consultas Activas</h1>
+            <h1>Consultas Bloqueadas</h1>
         </div>
-    </div>
-    <div class="row">
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 <table id="tablaInscripcion" class="display table table-striped table-hover" id="table_id">
                     <thead>
@@ -73,7 +70,7 @@ $consultas = $consultaRepository->getConsultasActivasByProfesor($profesor);
                             <th scope="col">Modalidad</th>
                             <th scope="col">URL</th>
                             <th scope="col">Horario Alternativo</th>
-                            <th scope="col">Bloquear</th>
+                            <th scope="col">Desbloquear</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,8 +87,8 @@ $consultas = $consultaRepository->getConsultasActivasByProfesor($profesor);
                                     <td><?= $row['url'] ?></td>
                                     <td><?= $row['horarioAlternativo'] ?></td>
                                     <td>
-                                        <a href="ConsultaBloquear.php?id='<?= $row["idConsulta"] ?>' ">
-                                            <i class="fa-solid fa-lock" style="color:red;"></i>
+                                        <a href="<?= REDIR_CONTROLLERS ?>'/profesor/desbloqConsulta.php?id='. $row[" idConsulta"] .' ">
+                                            <i class=" fa-solid fa-unlock" style="color:green;"></i>
                                         </a>
                                     </td>
 
@@ -102,8 +99,8 @@ $consultas = $consultaRepository->getConsultasActivasByProfesor($profesor);
                 </table>
             </div>
         </div>
+    </div>
 </div>
-
 
 <script>
     function validaFecha(startId, endId) {

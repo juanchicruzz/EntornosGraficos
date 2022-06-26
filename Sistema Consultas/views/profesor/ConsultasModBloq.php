@@ -102,8 +102,6 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
 </div>
 </div>
 
-<br><br><br><br><br><br><br><br><br>
-
 
 
 <?php include(DIR_FOOTER); ?>
