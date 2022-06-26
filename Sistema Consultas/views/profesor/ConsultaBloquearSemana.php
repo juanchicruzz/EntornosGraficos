@@ -25,21 +25,8 @@ $consultas = $consultaRepository->getConsultasActivasByProfesor($profesor);
             <h1>Bloquear Consultas</h1>
         </div>
     </div>
-    <?php
-            if(isset($_SESSION['message'])){
-        ?>
-            <div class="alert alert-<?=$_SESSION['message_type']?>
-                alert-dismissible fade show" role="alert">
-                <?= $_SESSION['message'] ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                </button>
-            </div>    
-        <?php
-            unset($_SESSION['message']);
-            unset($_SESSION['message_type']);
-            }
-        ?>
-    
+
+
     <form action="<?= REDIR_CONTROLLERS . "/profesor/bloqSemana.php" ?>" method="POST">
         <div class="row justify-content-center">
             <div class="col-md-6 border p-3  bg-light ">
@@ -63,45 +50,59 @@ $consultas = $consultaRepository->getConsultasActivasByProfesor($profesor);
             <h1>Consultas Activas</h1>
         </div>
     </div>
-    <div class="row">
-            <div class="col-md-12">
-                <table id="tablaInscripcion" class="display table table-striped table-hover" id="table_id">
-                    <thead>
-                        <tr>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Modalidad</th>
-                            <th scope="col">URL</th>
-                            <th scope="col">Horario Alternativo</th>
-                            <th scope="col">Bloquear</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
-                        if ($consultas->num_rows == 0) {
-                            echo "<tr><td width:100%>No hay consultas disponibles</td></tr>";
-                        } else {
-                            while ($row = $consultas->fetch_array()) { ?>
-                                <tr>
-                                    <td><?= Utils::convertirFechaFromSQL($row['fecha']) ?></td>
-                                    <td><?= $row['estado'] ?></td>
-                                    <td><?= $row['modalidad'] ?></td>
-                                    <td><?= $row['url'] ?></td>
-                                    <td><?= $row['horarioAlternativo'] ?></td>
-                                    <td>
-                                        <a href="ConsultaBloquear.php?id='<?= $row["idConsulta"] ?>' ">
-                                            <i class="fa-solid fa-lock" style="color:red;"></i>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                        <?php }
-                        } ?>
-                    </tbody>
-                </table>
-            </div>
+    <?php
+    if (isset($_SESSION['message'])) {
+    ?>
+        <div class="alert alert-<?= $_SESSION['message_type'] ?>
+                alert-dismissible fade show" role="alert">
+            <?= $_SESSION['message'] ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
         </div>
+    <?php
+        unset($_SESSION['message']);
+        unset($_SESSION['message_type']);
+    }
+    ?>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tablaInscripcion" class="display table table-striped table-hover" id="table_id">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Modalidad</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Horario Alternativo</th>
+                        <th scope="col">Bloquear</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+                    if ($consultas->num_rows == 0) {
+                        echo "<tr><td width:100%>No hay consultas disponibles</td></tr>";
+                    } else {
+                        while ($row = $consultas->fetch_array()) { ?>
+                            <tr>
+                                <td><?= Utils::convertirFechaFromSQL($row['fecha']) ?></td>
+                                <td><?= $row['estado'] ?></td>
+                                <td><?= $row['modalidad'] ?></td>
+                                <td><?= $row['url'] ?></td>
+                                <td><?= $row['horarioAlternativo'] ?></td>
+                                <td>
+                                    <a href="ConsultaBloquear.php?id='<?= $row["idConsulta"] ?>' ">
+                                        <i class="fa-solid fa-lock" style="color:red;"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                    <?php }
+                    } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 

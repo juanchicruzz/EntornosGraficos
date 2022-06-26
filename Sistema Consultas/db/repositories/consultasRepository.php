@@ -140,6 +140,13 @@ class ConsultaRepository extends Repository{
             ['Activa',Null,$idConsulta]);
     }
 
+    function getConsultasByDates($estado,$idProfesor,$fechaInicio, $fechaFin){
+        $query = "SELECT c.idConsulta 
+        FROM consultas c 
+        WHERE c.idProfesor ='$idProfesor' AND c.estado = '$estado' AND c.fecha BETWEEN '$fechaInicio' AND '$fechaFin'";
+        return $this->getResults($query);
+    }
+
     function bloqConsultasByDates($motivo,$idProfesor,$fechaInicio, $fechaFin){
         $query = "UPDATE ".self::ENTITY." SET estado='Bloqueada' , motivoCancelacion=? ".
          "WHERE idProfesor=? AND ". 

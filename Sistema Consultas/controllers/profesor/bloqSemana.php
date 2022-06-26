@@ -8,7 +8,15 @@ require_once(DIR_REPOSITORIES . "/consultasRepository.php");
         $fechaFin = $_POST['EndDate'];
         $motivo = $_POST['motivo'];
         $idProfesor = $_POST['idProfesor'];
-        echo $fechaInicio . " " . $fechaFin;
+
+        $consultas = $ConsultaRepository->getConsultasByDates('Activa',$idProfesor,$fechaInicio,$fechaFin);
+
+        if($consultas -> num_rows == 0){
+            $_SESSION['message'] = "No se encontraron consultas para bloquear entre las fechas seleccionadas";
+            $_SESSION['message_type'] = "warning";
+            header("Location: " . REDIR_VIEWS . "/profesor/ConsultaBloquearSemana.php");
+            exit;
+        }
 
       
         $result_query = $ConsultaRepository->bloqConsultasByDates($motivo,$idProfesor,$fechaInicio, $fechaFin); 
