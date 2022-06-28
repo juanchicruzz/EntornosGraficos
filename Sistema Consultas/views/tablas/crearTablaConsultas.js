@@ -18,7 +18,7 @@ function crearTabla(){
             infoFiltered:   "",
         },
         columnDefs: [
-            { orderable: false, targets: [3,4] }
+            { orderable: false, targets: [3] }
           ],
           order: [[1, 'asc']]
     })

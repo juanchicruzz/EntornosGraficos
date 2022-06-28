@@ -11,6 +11,9 @@ $materia = $_GET['m'];
 $carrera = $_GET['c'];
 
 $consultas = $consultaRepository->getConsultasByPrimaryKey($profesor, $materia, $carrera);
+// EN ESTA CONSULTA, SI EL ID DE ALUMNO DEVUELTO ES NULL, SIGNIFICA QUE AUN NO SE INSCRIBIO
+// EN CAMBIO, SI TIENE UN VALOR, ENTONCES YA ESTA INSCRIPTO. NO PERMITIR VOLVER A INSCRIBIR
+
 $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia, $carrera)->fetch_array();
 
 ?>
@@ -62,7 +65,14 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                 <td><?=$row['horario'] ?></td>
                                 <?php if ($row['estado'] == "Bloqueada") {
                                     echo '<td align="center"><a role="link" aria-disabled="true"><i class="fas fa-user-check" style="color:grey;"></i></a></td>';
-                                } else { ?>
+                                } else { 
+                                    
+                                    if($row['idAlumno'] != null){
+                                        echo '<td>Ya inscripto <a href="misInscripciones.php">Ver aquí</a></td>';
+                                    } 
+                                    else {
+                                    ?>
+                                    
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inscribirModal" 
                                         data-bs-fecha="<?=Utils::convertirFechaFromSQL($row['fecha'])?>" data-bs-modalidad="<?=$row['modalidad']?>" 
@@ -99,7 +109,9 @@ $detalles = $consultaRepository->getDetallesParaInscripcion($profesor, $materia,
                                             </div>
                                         </div>
                                     </td>
-                                <?php  } ?>
+                                <?php  
+                                }
+                            } ?>
                             </tr>
                     <?php
                         }

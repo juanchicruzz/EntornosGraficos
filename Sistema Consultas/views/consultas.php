@@ -19,7 +19,6 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
 <?php require_once(DIR_HEADER);?>
 
 <script type="text/javascript" charset="utf8" src="tablas/crearTablaConsultas.js"></script>
-<script> crearTabla() </script>
 
 <div class="container">
     <div class="row">
@@ -67,14 +66,18 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
     <br><br>
     <div class="row">
         <div class="col-md-12">
-            <table id="tablaConsultas" class="display table table-striped table-hover" id="table_id">
+            <table id="tablaConsultas" class="display table table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Dia/Hora</th>
                         <th scope="col">Profesor</th>
                         <th scope="col">Materia</th>
                         <th scope="col">Carrera</th>
-                        <th scope="col">Inscribirse</th>
+                        <?php
+                            if (($_SESSION["userType"] == "1")) {
+                                echo "<th scope=\"col\">Inscribirse</th>";
+                            }
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,9 +92,15 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
                                 <td><?= $row['profesor'] ?></td>
                                 <td><?= $row['descripcionMateria'] ?></td>
                                 <td><?= $row['nombreCarrera'] ?></td>
-                                <td><a href="<?=REDIR_VIEWS?>/alumno/inscripcion.php?p=<?= $row['idProfesor'] ?>&m=<?= $row['idMateria'] ?>&c=<?= $row['idCarrera'] ?>">
-                                        <i class="fas fa-user-check"></i>
-                                    </a></td>
+                                <?php
+                                    if (($_SESSION["userType"] == "1")) {
+                                    echo "<td><a href=".REDIR_VIEWS."/alumno/inscripcion.php?p="
+                                        .$row['idProfesor']."&m=".$row['idMateria']."&c=".$row['idCarrera'].">
+                                            .<i class='fas fa-user-check'></i>
+                                        </a></td>";
+                                    }
+                                ?>
+                                    
                             </tr>
                     <?php }
                     } ?>
@@ -101,6 +110,8 @@ if (!isset($_GET["carrera"]) && !isset($_GET["a"])) {
     </div>
 </div>
 </div>
+
+<script> crearTabla() </script>
 
 <br><br><br><br><br><br><br><br><br>
 

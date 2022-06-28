@@ -57,17 +57,38 @@ class ConsultaRepository extends Repository{
         return $this->getResults($query);
     }
 
+    /* Cambiada por la de abajo para saber si un alumno ya esta inscripto o no
     function getConsultasByPrimaryKey($idProfesor, $idMateria, $idCarrera){
         $query = "SELECT c.idConsulta, c.fecha, c.estado, c.modalidad, 
         ifNull(c.ubicacion, 'No definido') as ubicacion, 
-        ifNull(c.horarioAlternativo, pm.horarioFijo) as horario, c.idConsulta
+        ifNull(c.horarioAlternativo, pm.horarioFijo) as horario, i.idAlumno
         FROM consultas c
         INNER JOIN profesor_materia pm 
 			ON c.idCarrera = pm.idCarrera AND c.idProfesor = pm.idProfesor AND c.idMateria = pm.idMateria
+        LEFT JOIN inscripciones i 
+			ON i.idConsulta = c.idConsulta
       WHERE c.idCarrera = $idCarrera AND c.idProfesor = $idProfesor AND c.idMateria = $idMateria;";
       
         return $this->getResults($query);
     }
+    */
+
+    function getConsultasByPrimaryKey($idProfesor, $idMateria, $idCarrera){
+        $query = "SELECT i.idAlumno, i.idConsulta, c.idConsulta, upper(pm.dia), c.fecha, c.estado, c.modalidad, 
+            ifNull(c.ubicacion, 'No definido') as ubicacion, 
+            ifNull(c.horarioAlternativo, pm.horarioFijo) as horario
+        FROM inscripciones i 
+        RIGHT JOIN consultas c
+        ON i.idConsulta = c.idConsulta
+        INNER JOIN profesor_materia pm 
+            ON c.idCarrera = pm.idCarrera AND c.idProfesor = pm.idProfesor AND c.idMateria = pm.idMateria
+        WHERE c.idCarrera = $idCarrera AND c.idMateria = $idMateria AND c.idProfesor = $idProfesor AND 
+            (isNull(i.idAlumno) OR i.idAlumno = ".$_SESSION['id'].")";
+        return $this->getResults($query);
+    }
+    
+
+
     function getIdConsultaFromPKandFecha($idProfesor, $idMateria, $idCarrera, $fecha){
         $query = "SELECT idConsulta FROM consultas c 
         WHERE c.idCarrera = $idCarrera AND c.idProfesor = $idProfesor 

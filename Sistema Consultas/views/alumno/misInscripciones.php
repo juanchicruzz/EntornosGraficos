@@ -40,7 +40,9 @@ $inscripciones = $InscripcionRepository -> getInscripcionesByAlumno($_SESSION['i
                 </button>
             </div>    
         <?php
-            }
+            unset($_SESSION['message']);
+            unset($_SESSION['message_type']);
+        }
         ?>
 
     <br><br>
