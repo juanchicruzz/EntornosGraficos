@@ -32,7 +32,7 @@ private function __construct()
 private function createConnection(){
     $connection = mysqli_connect(
         self::$DB_HOST, self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_NAME);
-    //mysqli_set_charset($connection, self::$DB_CHARSET);
+    mysqli_set_charset($connection, self::$DB_CHARSET);
     if(!$connection){
         echo "La conexion no tuvo exito";
         return null;
