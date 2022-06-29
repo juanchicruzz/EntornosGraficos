@@ -18,8 +18,26 @@ class InscripcionRepository extends Repository{
     }
 
     function getInscripcionesByAlumno($idAlumno){
+        $query = "SELECT m.descripcionMateria, car.nombreCarrera, pm.dia, c.fecha, c.estado, 
+        c.modalidad, c.ubicacion, ifnull(horarioAlternativo, pm.horarioFijo) as horario, 
+        i.motivoConsulta, i.fechaInscripcion, i.idConsulta
+        FROM inscripciones i
+        INNER JOIN consultas c
+            ON i.idConsulta = c.idConsulta
+        INNER JOIN profesor_materia pm
+            ON c.idProfesor = pm.idProfesor AND c.idCarrera = pm.idCarrera AND c.idMateria = pm.idMateria
+        INNER JOIN materias m
+            ON pm.idMateria = m.idMateria
+        INNER JOIN carreras car
+            ON pm.idCarrera = car.idCarrera
+        WHERE i.idAlumno = $idAlumno 
+        ORDER BY c.fecha ASC;" ;
+        return $this->getResults($query);
+    }
+
+    function getIdsInscripcionesByAlumno($idAlumno){
         $query = "
-            SELECT * FROM ".self::ENTITY
+            SELECT idConsulta FROM ".self::ENTITY
             ." WHERE idAlumno = '".$idAlumno."' ;" ;
         return $this->getResults($query);
     }
@@ -29,6 +47,13 @@ class InscripcionRepository extends Repository{
             ." (idAlumno, idConsulta, motivoConsulta) VALUES (?, ?, ?);" ;
         return $this->executeQuery(
             $query, [$idAlumno, $idConsulta, $motivo]);
+    }
+
+    function darDeBajaAlumnoEnConsulta($idAlumno, $idConsulta){
+        $query = "DELETE FROM  ".self::ENTITY." 
+        WHERE idAlumno = ? AND idConsulta = ?;" ;
+        return $this->executeQuery(
+            $query, [$idAlumno, $idConsulta]);
     }
 }
 

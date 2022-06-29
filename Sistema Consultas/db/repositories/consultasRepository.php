@@ -74,16 +74,13 @@ class ConsultaRepository extends Repository{
     */
 
     function getConsultasByPrimaryKey($idProfesor, $idMateria, $idCarrera){
-        $query = "SELECT i.idAlumno, i.idConsulta, c.idConsulta, upper(pm.dia), c.fecha, c.estado, c.modalidad, 
-            ifNull(c.ubicacion, 'No definido') as ubicacion, 
-            ifNull(c.horarioAlternativo, pm.horarioFijo) as horario
-        FROM inscripciones i 
-        RIGHT JOIN consultas c
-        ON i.idConsulta = c.idConsulta
+        $query = "SELECT c.idConsulta, upper(pm.dia) as dia, c.fecha, c.estado, c.modalidad, 
+        ifNull(c.ubicacion, 'No definido') as ubicacion, 
+        ifNull(c.horarioAlternativo, pm.horarioFijo) as horario
+        FROM consultas c
         INNER JOIN profesor_materia pm 
-            ON c.idCarrera = pm.idCarrera AND c.idProfesor = pm.idProfesor AND c.idMateria = pm.idMateria
-        WHERE c.idCarrera = $idCarrera AND c.idMateria = $idMateria AND c.idProfesor = $idProfesor AND 
-            (isNull(i.idAlumno) OR i.idAlumno = ".$_SESSION['id'].")";
+			ON c.idCarrera = pm.idCarrera AND c.idProfesor = pm.idProfesor AND c.idMateria = pm.idMateria
+      WHERE c.idCarrera = $idCarrera AND c.idProfesor = $idProfesor AND c.idMateria = $idMateria";
         return $this->getResults($query);
     }
     

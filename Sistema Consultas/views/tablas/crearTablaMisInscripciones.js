@@ -8,7 +8,7 @@ function crearTabla(){
             info: 'Mostrando pagina _PAGE_ de _PAGES_',
             infoEmpty: 'No hay consultas con ese filtro',
             loadingRecords: "Cargando...",
-            search: "Filtrar por dia, profesor o materia:",
+            search: "Filtrar por materia o estado:",
             paginate: {
             "first":      "Primero",
             "last":       "Ultimo",
@@ -18,9 +18,8 @@ function crearTabla(){
             infoFiltered:   "",
         },
         columnDefs: [
-            { orderable: false, targets: [3,4] }
-          ],
-          order: [[1, 'asc']]
+            { orderable: false, targets: [1,3,4,5,6] }
+          ]
     })
 });
 }
