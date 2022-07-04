@@ -8,10 +8,11 @@ Security::verifyUserIsAdmin();
 include(DIR_HEADER)
 
 ?>
-
+<script type="text/javascript" charset="utf8" src="../tablas/downloadTabla.js"></script>
 <?php
     include(DIR_REPOSITORIES . "/usersRepository.php");
 ?>
+
     <div class="container p-4">
         <div class="row bg-light border">
             <h1>Validar Docentes</h1>   
@@ -32,7 +33,7 @@ include(DIR_HEADER)
             }
         ?>
         <br>
-       <table class="table table-bordered">
+       <table id='tableValidarDocente'   class="table table-bordered">
            <thead class="thead-dark">
                <th scope="col">ID</th>
                <th scope="col">Email</th>
@@ -82,6 +83,9 @@ include(DIR_HEADER)
             ?>
            </tbody>
        </table>
+       <input type="button" id="btnExport" value="Descargar PDF" onclick="Export('tableValidarDocente','docentes_a_validar')" />
+       <br>
+       <br>
     </div>
 
 <?php include(DIR_FOOTER);?>

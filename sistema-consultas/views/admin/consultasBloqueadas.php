@@ -7,7 +7,7 @@ Security::verifyUserIsAdmin();
 // 
 include(DIR_HEADER)
 ?>
-
+<script type="text/javascript" charset="utf8" src="../tablas/downloadTabla.js"></script>
 <script type="text/javascript" charset="utf8" src="../tablas/crearTablaConsultasBloqueadas.js"></script>
 <script> crearTabla() </script>
 
@@ -49,6 +49,9 @@ include(DIR_HEADER)
             ?>
            </tbody>
        </table>
+       <input type="button" id="btnExport" value="Descargar PDF" onclick="Export('tablaConsultasBloqueadas','ConsultasBloqueadas')" />
+        <br>
+        <br>
     </div>
 
 <?php include(DIR_FOOTER);?>

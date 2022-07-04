@@ -9,6 +9,7 @@ include(DIR_HEADER)
 ?>
 
 <script type="text/javascript" charset="utf8" src="../tablas/crearTablaConsultas.js"></script>
+<script type="text/javascript" charset="utf8" src="../tablas/downloadTabla.js"></script>
 <script> crearTabla() </script>
 
 <?php
@@ -82,6 +83,9 @@ include(DIR_HEADER)
             ?>
            </tbody>
        </table>
+        <input type="button" id="btnExport" value="Descargar PDF" onclick="Export('tablaConsultas','ConsultasPorDia')" />
+        <br>
+        <br>
     </div>
 
 <?php include(DIR_FOOTER);?>
